@@ -1,0 +1,893 @@
+You are working on an existing project called GymPlatform.
+
+IMPORTANT: this repository was originally designed for another gym/client. We are now adapting the entire product for a completely different real client:
+
+GYM PARK
+Ezzahra, Tunisia
+
+This is NOT a light reskin.
+
+I want a complete visual, UX, content and brand transformation of the existing application while preserving the useful technical architecture and existing functional foundations.
+
+==================================================
+1. ABSOLUTE RULE: DO NOT MIX THE OLD CLIENT
+==================================================
+
+The existing repository contains branding and information for another gym, notably:
+- Meliora
+- Sousse
+- Khzema / Khzema Est
+- old Meliora logos
+- old Meliora photos/videos
+- beige/stone/red visual identity
+- old addresses and phone numbers
+- illustrative/fake membership prices
+- illustrative promotions
+- old testimonials
+- old amenities and physical-club claims
+- old SEO metadata
+- old member rewards branded as FitPoints
+- old client-specific copy
+
+Treat the existing repository as a TECHNICAL BASE ONLY.
+
+GYM PARK is a separate business.
+
+Perform a repository-wide audit and remove or replace every client-specific trace from the previous brand.
+
+Search for terms such as:
+Meliora
+Khzema
+Sousse
+55057537
+Rue Colonel Garnaoui
+FitPoints
+meliora_
+meliora-
+and any previous-client-specific content.
+
+Do not leave old branding hidden in:
+- SEO metadata
+- alt text
+- aria labels
+- localStorage keys
+- member pages
+- footer
+- login/signup
+- backend defaults
+- OpenGraph tags
+- image names
+- placeholder copy
+- test/demo cards.
+
+Do NOT reuse previous-client physical photos or videos as if they belonged to Gym Park.
+
+In particular, inspect old assets such as:
+- meliora-*
+- hero-brand.jpg
+- brandstory-facade.png
+- zone-*.png
+- intro.mp4
+- club-hero.mp4
+- marble backgrounds
+and stop referencing them wherever they are tied to the former client.
+
+==================================================
+2. PROVIDED ASSETS — SOURCE OF TRUTH
+==================================================
+
+I will provide you with:
+
+1. A transparent PNG of the real GYM PARK logo.
+2. A new cinematic Gym Park hero background image.
+3. A screenshot of an older Gym Park hero design that I want you to use as VISUAL / LAYOUT inspiration.
+
+The real transparent logo is the authoritative logo.
+
+DO NOT redraw the logo.
+DO NOT modify its typography.
+DO NOT replace it with generated text.
+DO NOT recreate it with CSS.
+Use the provided logo file.
+
+The generated gym photograph must be used as the principal hero background.
+
+The old hero screenshot is a DESIGN REFERENCE, not an image to put directly into the page.
+
+Interpret its composition:
+- logo top-left
+- navigation in the top area
+- clear CTA top-right
+- very large headline left
+- athlete/action imagery primarily right
+- black/dark environment
+- lime yellow-green accent
+- strong contrast
+- small supporting information below headline
+- energetic fitness aesthetic
+- clear but not excessive CTAs
+- premium and professional presentation.
+
+==================================================
+3. REAL GYM PARK INFORMATION
+==================================================
+
+Use these details as the current source of truth.
+
+BUSINESS
+
+Name:
+GYM PARK
+
+Location:
+Ezzahra, Tunisia
+
+Primary public location text:
+Avenue Habib Bourguiba, Ezzahra
+
+Some public listings also reference:
+5 Rue Hassouna Zaouali, Ezzahra 2034
+
+Do not show contradictory addresses simultaneously in prominent UI.
+Use:
+"Avenue Habib Bourguiba, Ezzahra"
+as the primary visitor-facing location for now.
+
+Phone:
++216 29 800 819
+
+Phone link:
+tel:+21629800819
+
+Instagram:
+https://www.instagram.com/gym_park_/
+
+Facebook references publicly exist for Gym Park, but Instagram should be the principal social link in this redesign.
+
+For Maps, avoid carrying over Meliora coordinates.
+Use a Google Maps search URL/query for:
+Gym Park Ezzahra Tunisia
+unless an exact verified Gym Park coordinate already exists in the new supplied data.
+
+==================================================
+4. OPENING HOURS
+==================================================
+
+These changed starting 1 September 2026.
+
+Monday:    07:00 – 22:00
+Tuesday:   07:00 – 22:00
+Wednesday: 07:00 – 22:00
+Thursday:  07:00 – 22:00
+Friday:    07:00 – 22:00
+Saturday:  08:00 – 18:00
+Sunday:    09:00 – 18:00
+
+Update:
+- public website
+- opening-hours ticker
+- open/closed logic
+- contact page
+- club page
+- backend GymSettings / OpeningHours defaults or seed data where appropriate.
+
+The live open/closed status component can remain, but it must calculate from these hours.
+
+==================================================
+5. OFFICIAL STANDARD PRICING
+==================================================
+
+Replace the illustrative Meliora pricing completely.
+
+GYM PARK standard pricing:
+
+MORNING ACCESS
+Access period:
+07:00 – 13:00
+
+1 month:
+80 DT
+
+3 months:
+210 DT
+
+
+OPEN / FULL ACCESS
+
+1 month:
+130 DT
+
+3 months:
+320 DT
+
+6 months:
+530 DT
+
+12 months:
+890 DT
+
+
+SESSION PACK
+
+20 sessions:
+200 DT
+
+Validity:
+6 months
+
+
+SHORT ACCESS
+
+2 weeks:
+70 DT
+
+
+REGISTRATION FEE
+
+30 DT
+
+The registration fee must be presented separately and clearly so visitors understand that it is not the membership price itself.
+
+Design the pricing UI so the different access types are immediately understandable:
+- Morning Access
+- Full Access
+- Session Pack
+- Short Access
+
+Do not force all of these into identical generic pricing cards if another information architecture communicates the difference better.
+
+==================================================
+6. RECENT PROMOTION
+==================================================
+
+Gym Park publicly announced this promotion on 28 August 2026:
+
+3 months:
+280 DT instead of 320 DT
+
+6 months:
+450 DT instead of 530 DT
+
+12 months:
+710 DT instead of 890 DT
+
+IMPORTANT:
+No reliable end date is supplied here.
+
+Therefore the promotion must NOT be embedded throughout the application as an eternal hardcoded price.
+
+Create a centralized promotion configuration / backend-compatible structure with:
+- original price
+- promotional price
+- start date
+- optional end date
+- active flag
+- publiclyVisible flag.
+
+The public UI should only display this promotion when active.
+
+If there is currently no reliable admin/API integration for this, put it behind one explicit centralized configuration flag so it can be enabled/disabled in one place.
+
+Do not invent an expiration date.
+
+==================================================
+7. CLASSES / ACTIVITIES
+==================================================
+
+Gym Park actively communicates around group classes and coached events.
+
+Known/recent examples include:
+- Body Attack
+- Body Combat
+- Pump / Duo Pump
+- Spinning
+- Cross-boxing
+- Cardio challenges
+- Strength / force challenges
+- group training
+- coached special events.
+
+Spinning reservations have publicly been requested by phone at:
+29 800 819
+
+Some classes/events have dedicated women's sessions.
+
+Create a proper "Cours" / "Classes" experience in the public site.
+
+Suggested route:
+ /cours
+
+It should support:
+- class/activity cards
+- coach name when available
+- category
+- intensity
+- date/time
+- women-only indicator where applicable
+- reservation-required indicator
+- reservation phone CTA
+- weekly schedule structure
+- special events/challenges.
+
+DO NOT invent a permanent weekly schedule based on one historical Instagram post.
+
+Build the architecture/UI so the schedule can change easily.
+
+If backend persistence for classes does not exist yet, do not perform a destructive architecture rewrite.
+
+You may either:
+A. introduce a clean additive GroupClass/ClassSession model and migration, or
+B. create a centralized typed frontend configuration with a clear future API integration point.
+
+Choose the approach that best matches the current maturity of the repository.
+
+==================================================
+8. BRAND DIRECTION
+==================================================
+
+This website must visually feel like GYM PARK.
+
+Main style:
+- black
+- graphite
+- dark charcoal
+- white
+- strong lime / yellow-green accent matching the supplied logo.
+
+Use the supplied logo to determine the closest brand green.
+
+A reasonable fallback token is approximately:
+#B7E000
+
+But prefer matching the actual supplied logo.
+
+Example system:
+
+--gp-black: #090B0C
+--gp-charcoal: #151819
+--gp-surface: #1D2021
+--gp-white: #F5F6F2
+--gp-muted: #9EA4A6
+--gp-green: derived from supplied Gym Park logo
+
+NO Meliora red.
+NO beige luxury-club visual identity.
+NO classical/Cinzel identity.
+
+Typography should be modern, athletic and geometric.
+
+Use:
+- strong condensed/geometric display typography for hero headings
+- clean sans-serif for UI/body copy
+- strong numeric hierarchy for prices.
+
+Avoid excessive pill-shaped SaaS cards.
+
+The design should feel:
+FITNESS
+ENERGY
+PERFORMANCE
+COMMUNITY
+MODERN
+DARK
+PREMIUM
+DIRECT
+
+Not:
+corporate dashboard
+luxury hotel
+generic SaaS landing page.
+
+==================================================
+9. NEW HERO SECTION
+==================================================
+
+The homepage hero is one of the most important parts.
+
+Rebuild it based on the supplied old Gym Park screenshot and the supplied new hero background.
+
+Desktop concept:
+
+- approximately full viewport height
+- new hero background covers the full section
+- athlete sits predominantly toward the right side
+- dark gradient overlay on left for text readability
+- navigation overlays or integrates naturally into hero
+- logo at upper left
+- desktop navigation centered/right
+- strong JOIN / REJOINDRE CTA at upper right.
+
+Hero copy can follow this direction:
+
+Small eyebrow:
+MORE THAN A GYM
+
+Main:
+BUILD A
+STRONGER
+YOU
+
+Highlight "YOU" using Gym Park green.
+
+Supporting line:
+Training. Community. Progress.
+
+Use Gym Park's social communication direction as secondary inspiration:
+Train Hard • Get Strong • Stay Together
+
+Primary CTA:
+REJOINDRE GYM PARK
+or
+VOIR LES ABONNEMENTS
+
+Secondary CTA:
+DÉCOUVRIR LE CLUB
+
+If there is no valid new Gym Park video asset, DO NOT use the old Meliora video simply to make a "Watch Video" button work.
+
+Either:
+- scroll to the club/classes section,
+or
+- hide/deactivate video-specific interaction until a real asset exists.
+
+Below/inside the hero, preserve the spirit of the old screenshot with 3 small supporting points, but do not invent statistics:
+
+01
+ÉQUIPEMENT
+
+02
+COACHING
+
+03
+COMMUNAUTÉ
+
+or similar verified/general concepts.
+
+Do not display fake "500+ members" or any other unsupported membership count.
+
+==================================================
+10. HOMEPAGE INFORMATION ARCHITECTURE
+==================================================
+
+Redesign the complete homepage.
+
+Recommended order:
+
+HERO
+
+OPEN NOW / HOURS STRIP
+Show today's status and closing time.
+
+MEMBERSHIP / PRICING PREVIEW
+Show real Gym Park plans.
+
+PROMOTION
+Only if active.
+
+CLASSES
+Body Attack, Body Combat, Pump, Spinning, challenges, etc.
+
+WHY GYM PARK
+Focus on training, coaching and community.
+Do not use invented equipment counts.
+
+MEMBER EXPERIENCE
+Present the digital member platform:
+- membership status
+- member card
+- attendance
+- payments
+- loyalty
+- notifications
+etc., but only claim features as operational if they actually exist.
+
+LOCATION / CONTACT
+Gym Park, Ezzahra
+29 800 819
+Instagram
+Directions
+
+FINAL CTA
+Rejoindre Gym Park.
+
+==================================================
+11. PUBLIC NAVIGATION
+==================================================
+
+A clean primary navigation could become:
+
+Accueil
+Le Club
+Cours
+Abonnements
+Offres
+Contact
+
+Secondary/actions:
+Espace membre
+Rejoindre
+
+On mobile:
+use a polished full-screen or drawer menu that maintains the black/green visual identity.
+
+==================================================
+12. CLUB PAGE
+==================================================
+
+Remove the previous Meliora physical-club story.
+
+Do not show:
+- old Meliora facade
+- old Meliora equipment pictures
+- invented rack quantities
+- fake square-meter figures
+- previous Google Business amenities
+- previous owner/company claims.
+
+Build Gym Park's club page around verified/general content:
+- Musculation
+- Cardio
+- Cours collectifs
+- Coaching
+- Community
+- Challenges/events.
+
+If there are not enough genuine Gym Park photos supplied, do NOT present generated or old-client photography as documentary photos of the actual facility.
+
+Generated imagery may only be used as clearly decorative brand imagery.
+
+Leave gallery architecture ready for real client photos.
+
+==================================================
+13. PRICING PAGE
+==================================================
+
+Completely redesign /abonnements around real Gym Park pricing.
+
+The page should make the distinction between:
+
+Morning access
+07:00–13:00
+
+Full access
+
+20-session pack
+
+2-week access
+
+Registration fee
+
+very obvious.
+
+For promotional plans:
+show original price crossed out and promotional price only when the promotion flag is active.
+
+Do not calculate misleading monthly equivalents unless genuinely useful.
+
+Use DT as the visual currency label used by the client.
+
+==================================================
+14. OFFERS PAGE
+==================================================
+
+Delete all old fabricated offers such as:
+- student discount
+- duo discount
+- old annual discount
+- fictional FitPoints promotion
+unless they are explicitly present in Gym Park data.
+
+The page should consume centralized promotion data.
+
+If no promotion is active, display a polished empty state rather than fake deals.
+
+==================================================
+15. LOYALTY / MEMBER FEATURES
+==================================================
+
+The existing platform includes a loyalty concept.
+
+Keep the architecture if useful, but remove "FitPoints" branding from the previous design.
+
+Use:
+"Points Gym Park"
+or simply
+"Points fidélité"
+
+Do not state specific rewards, thresholds or advantages as real Gym Park business rules unless they are actually implemented/confirmed.
+
+Demo/example data inside authenticated prototypes can be clearly labelled as demo data.
+
+==================================================
+16. MEMBER AREA
+==================================================
+
+The existing public-site also contains /espace-membre routes.
+
+Rebrand the entire member area.
+
+It must visually belong to the same product:
+dark graphite UI
+lime green accent
+Gym Park logo
+clean fitness dashboard aesthetic.
+
+Audit and redesign:
+- dashboard
+- membership
+- digital member card
+- attendance
+- loyalty
+- rewards
+- challenges
+- referral
+- payments
+- membership history
+- notifications
+- support
+- profile.
+
+Remove Meliora names and old pricing from all demo records.
+
+Do not silently claim features are connected to a real backend if they currently are only mocked.
+
+Keep mock/demo state clearly separated from production data.
+
+==================================================
+17. LOGIN / SIGNUP
+==================================================
+
+Rebuild login and signup visually for Gym Park.
+
+Use the new logo and visual system.
+
+Signup must display real plan options.
+
+Include the 30 DT registration fee transparently where relevant.
+
+No Meliora text anywhere.
+
+==================================================
+18. ADMIN-CONSOLE AND MEMBER-PORTAL WORKSPACES
+==================================================
+
+The repository also contains separate:
+apps/member-portal
+apps/admin-console
+
+They currently appear to still contain default/scaffold UI.
+
+Do not leave default Vite/React starter screens in a client-ready repository.
+
+However, do not duplicate an already working member implementation unnecessarily.
+
+For this phase:
+
+- Give admin-console a proper Gym Park branded application shell.
+- Give member-portal a Gym Park branded application shell if it is intended for future separation.
+- If the actual current member functionality lives under public-site /espace-membre, preserve that architecture instead of performing an unnecessary migration.
+- Document which member surface is currently authoritative.
+
+Remove all Vite starter imagery/text.
+
+==================================================
+19. BACKEND
+==================================================
+
+Preserve the existing .NET architecture and domain model wherever possible.
+
+Update old default gym settings:
+
+Name:
+Gym Park
+
+City:
+Ezzahra
+
+Country:
+Tunisia
+
+Phone:
+29 800 819
+
+Primary brand color:
+dark/black
+
+Accent:
+Gym Park green
+
+Update opening-hours source/seed as specified above.
+
+Do not create destructive migrations.
+
+If adding new models such as classes/schedules, migrations must be additive and preserve existing tables/data.
+
+For membership plans, note that Gym Park has multiple access models:
+
+- unlimited/full access
+- morning time-restricted access
+- session-limited pack
+- short-duration pass.
+
+The existing MembershipPlan model may not model all of these elegantly.
+
+If plans are going to be persisted in the backend, extend the model cleanly rather than abusing DurationDays.
+
+A possible future-compatible model could include concepts such as:
+AccessMode
+SessionLimit
+AccessStartTime
+AccessEndTime
+ValidityDays
+
+Only make those schema additions if they are justified by the current implementation.
+
+==================================================
+20. CENTRALIZE BUSINESS DATA
+==================================================
+
+Do not scatter Gym Park facts across components.
+
+There must be a single clear source for:
+- brand name
+- logo references
+- phone
+- social links
+- address
+- map query
+- opening hours
+- plans
+- registration fee
+- promotions
+- classes if frontend-configured.
+
+Existing files such as gymInfo.ts / plans.ts may be refactored.
+
+Use typed data structures.
+
+==================================================
+21. SEO / METADATA
+==================================================
+
+Replace all Meliora metadata.
+
+Suggested title:
+Gym Park | Salle de sport à Ezzahra
+
+Suggested description:
+Gym Park à Ezzahra — musculation, cardio, cours collectifs, coaching et abonnements adaptés à votre rythme.
+
+Update:
+- page title
+- meta description
+- favicon
+- OpenGraph metadata where applicable
+- logo references
+- accessible labels.
+
+Set the public site's primary language to French.
+
+==================================================
+22. RESPONSIVE DESIGN
+==================================================
+
+This must look excellent on:
+- 1440px desktop
+- normal laptop
+- tablet
+- iPhone/mobile.
+
+On mobile:
+- keep the athlete/background composition usable
+- ensure the hero text does not cover the most important subject area
+- make CTA hierarchy obvious
+- make pricing horizontally/vertically easy to scan
+- avoid microscopic class schedule tables
+- ensure touch targets are appropriate.
+
+==================================================
+23. ACCESSIBILITY & QUALITY
+==================================================
+
+Maintain:
+- keyboard navigation
+- visible focus states
+- semantic HTML
+- proper headings
+- sufficient color contrast
+- prefers-reduced-motion
+- meaningful alt text
+- proper button/link semantics.
+
+Do not sacrifice accessibility for the dark neon aesthetic.
+
+==================================================
+24. ANIMATIONS
+==================================================
+
+Use subtle high-quality interactions:
+- hero entrance
+- navigation transitions
+- card hover
+- scroll reveals
+- green underline/accent animation
+- smooth responsive menu.
+
+Avoid:
+- excessive floating
+- cheesy gym animations
+- excessive parallax
+- constant motion
+- animations that delay usability.
+
+==================================================
+25. IMPLEMENTATION APPROACH
+==================================================
+
+Do not only write a plan.
+
+Inspect the repository first and then IMPLEMENT the redesign.
+
+Before editing:
+1. understand the current routing and workspace architecture
+2. identify reusable functionality
+3. identify all old-client content
+4. identify assets that must no longer be referenced.
+
+Then implement systematically.
+
+Do not rewrite working technical logic merely for aesthetics.
+
+Do not remove existing member/backend functionality unless obsolete or genuinely incorrect.
+
+==================================================
+26. VERIFICATION
+==================================================
+
+After implementation:
+
+Run the relevant frontend builds.
+
+At minimum verify the public-site build.
+
+Also build member/admin workspaces if modified.
+
+Run the .NET backend build if backend code was touched.
+
+Fix:
+- TypeScript errors
+- broken imports
+- old asset references
+- route errors
+- responsive overflow
+- console errors.
+
+Perform a final global search for:
+Meliora
+Khzema
+Sousse
+old phone numbers
+old logo filenames
+FitPoints
+old prices
+and remove remaining former-client contamination.
+
+==================================================
+27. FINAL REPORT
+==================================================
+
+When finished, report:
+
+1. What you changed
+2. Main files changed
+3. New assets used
+4. Routes redesigned/added
+5. Business data replaced
+6. Old-client data removed
+7. Backend/schema changes, if any
+8. Remaining mocked features
+9. Anything requiring Gym Park confirmation
+10. Build/test results
+
+Do not tell me only what should be done.
+Implement it.

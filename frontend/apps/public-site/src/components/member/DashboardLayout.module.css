@@ -1,0 +1,256 @@
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  background: var(--stone);
+}
+
+@supports not (background-attachment: fixed) {
+  .shell {
+    background-attachment: scroll;
+  }
+}
+
+.sidebar {
+  background: var(--stone-high);
+  color: var(--ink);
+  border-right: 1px solid var(--line);
+}
+
+.sidebarInner {
+  padding: var(--space-6) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.mark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  padding: 0 var(--space-2);
+}
+
+.markIcon {
+  height: 30px;
+  width: auto;
+}
+
+.markWordmark {
+  height: 13px;
+  width: auto;
+}
+
+.fullMark {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-2) 0 0;
+}
+
+.fullMarkImg {
+  height: 88px;
+  width: auto;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.navGroupLabel {
+  font-family: var(--font-mono);
+  font-size: var(--step-meta);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate-low);
+  padding: var(--space-4) var(--space-2) var(--space-2);
+}
+
+.navItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px var(--space-3) 10px var(--space-4);
+  font-size: 0.875rem;
+  color: var(--slate);
+  text-decoration: none;
+  overflow: hidden;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.navItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navItem:hover {
+  color: var(--ink);
+  background: var(--bone);
+}
+
+.navItem.active {
+  color: var(--ink);
+  background: var(--accent-tint);
+  font-weight: 600;
+}
+
+.navItem.active::before {
+  transform: scaleY(1);
+}
+
+.navItem.active .navDot {
+  background: var(--accent);
+  box-shadow:
+    0 0 0 3px var(--accent-tint),
+    0 0 8px rgba(169, 207, 3, 0.6);
+}
+
+.navDot {
+  width: 5px;
+  height: 5px;
+  background: var(--line);
+  flex-shrink: 0;
+  transition:
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.logout {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--slate);
+  text-decoration: none;
+  padding: 0 var(--space-2);
+  transition: color 160ms ease;
+}
+
+.logout:hover {
+  color: var(--accent);
+}
+
+.main {
+  min-width: 0;
+}
+
+.topbar {
+  display: none;
+}
+
+.bottomNav {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--stone-high);
+    border-bottom: 1px solid var(--line);
+    padding: var(--space-4) var(--space-5);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .topbar .markIcon {
+    height: 28px;
+  }
+
+  .topbar .markWordmark {
+    height: 12px;
+  }
+
+  .topbar .logout {
+    color: var(--slate);
+  }
+
+  .main {
+    padding-bottom: 84px;
+  }
+
+  .bottomNav {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background: var(--stone-high);
+    border-top: 1px solid var(--line);
+    padding: var(--space-2) 0 var(--space-3);
+  }
+
+  .bottomItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--slate);
+    text-decoration: none;
+    padding: var(--space-2) var(--space-3);
+    transition: color 160ms ease;
+  }
+
+  .bottomItem .bottomDot {
+    width: 5px;
+    height: 5px;
+    background: transparent;
+    transition:
+      background-color 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .bottomItem.active {
+    color: var(--ink);
+  }
+
+  .bottomItem.active .bottomDot {
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(169, 207, 3, 0.6);
+  }
+}
+
+.shell > div {
+  min-width: 0;
+}
+.topbar .markIcon {
+  height: 54px;
+  width: 54px;
+}
+.bottomNav {
+  overflow-x: auto;
+}

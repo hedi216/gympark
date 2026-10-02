@@ -1,0 +1,21 @@
+.section {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-9) var(--edge);
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+.title {
+  font-size: var(--step-h1);
+  margin: var(--space-3) 0 var(--space-5);
+  max-width: 18ch;
+}
+
+.desc {
+  color: var(--slate);
+  max-width: 46ch;
+  margin-bottom: var(--space-7);
+}

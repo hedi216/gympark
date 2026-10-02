@@ -1,0 +1,128 @@
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 66px);
+  padding: var(--space-8) var(--edge);
+  background: var(--stone);
+}
+
+@supports not (background-attachment: fixed) {
+  .panel {
+    background-attachment: scroll;
+  }
+}
+
+.form {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.title {
+  font-size: var(--step-h1);
+  margin-top: var(--space-3);
+}
+
+.subtitle {
+  color: var(--slate);
+  margin: var(--space-3) auto var(--space-7);
+  max-width: 40ch;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  text-align: left;
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.forgot {
+  font-size: 0.8125rem;
+  color: var(--slate);
+  text-decoration: none;
+}
+
+.forgot:hover {
+  color: var(--accent);
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.submit {
+  margin-top: var(--space-6);
+  width: 100%;
+  justify-content: center;
+}
+
+.switch {
+  margin-top: var(--space-6);
+  font-size: 0.875rem;
+  color: var(--slate);
+}
+
+.switch a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.switch a:hover {
+  color: var(--accent);
+}
+
+.note {
+  margin-top: var(--space-5);
+  padding: var(--space-4);
+  border-left: 3px solid var(--accent);
+  background: var(--bone);
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .panel {
+    padding-top: var(--space-7);
+  }
+}
+
+.screen {
+  background: radial-gradient(ellipse at 90% 0%, #293315 0, #090b0c 55%);
+}
+.panel {
+  background: transparent;
+}
+.form {
+  max-width: 520px;
+  padding: 32px;
+  border: 1px solid var(--line);
+  background: #111615;
+}
+.form :global(.auth-logo) {
+  margin: 0 auto 24px;
+}
+@media (max-width: 540px) {
+  .form {
+    padding: 22px;
+  }
+  .row2 {
+    grid-template-columns: 1fr;
+  }
+  .panel {
+    padding: 35px 20px;
+  }
+}

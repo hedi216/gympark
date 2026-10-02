@@ -1,0 +1,197 @@
+{
+  "name": "Gym Park",
+  "city": "Ezzahra",
+  "country": "Tunisia",
+  "addressLine": "Avenue Habib Bourguiba, Ezzahra",
+  "phone": "29 800 819",
+  "phoneInternational": "+216 29 800 819",
+  "phoneHref": "tel:+21629800819",
+  "instagram": "https://www.instagram.com/gym_park_/",
+  "mapsQuery": "Gym Park Ezzahra Tunisia",
+  "logo": "/brand/gym-park-logo-dark.png",
+  "hero": "/brand/gym-park-hero.png",
+  "primaryColor": "#090B0C",
+  "accentColor": "#A9CF03",
+  "timezone": "Africa/Tunis",
+  "hoursEffectiveFrom": "2026-09-01",
+  "registrationFee": 30,
+  "openingHours": [
+    {
+      "day": 0,
+      "open": "09:00",
+      "close": "18:00"
+    },
+    {
+      "day": 1,
+      "open": "07:00",
+      "close": "22:00"
+    },
+    {
+      "day": 2,
+      "open": "07:00",
+      "close": "22:00"
+    },
+    {
+      "day": 3,
+      "open": "07:00",
+      "close": "22:00"
+    },
+    {
+      "day": 4,
+      "open": "07:00",
+      "close": "22:00"
+    },
+    {
+      "day": 5,
+      "open": "07:00",
+      "close": "22:00"
+    },
+    {
+      "day": 6,
+      "open": "08:00",
+      "close": "18:00"
+    }
+  ],
+  "plans": [
+    {
+      "id": "matin-1",
+      "name": "Accès matinal",
+      "accessMode": "morning",
+      "durationLabel": "1 mois",
+      "price": 80,
+      "accessStartTime": "07:00",
+      "accessEndTime": "13:00"
+    },
+    {
+      "id": "matin-3",
+      "name": "Accès matinal",
+      "accessMode": "morning",
+      "durationLabel": "3 mois",
+      "price": 210,
+      "accessStartTime": "07:00",
+      "accessEndTime": "13:00"
+    },
+    {
+      "id": "libre-1",
+      "name": "Accès libre",
+      "accessMode": "full",
+      "durationLabel": "1 mois",
+      "price": 130
+    },
+    {
+      "id": "libre-3",
+      "name": "Accès libre",
+      "accessMode": "full",
+      "durationLabel": "3 mois",
+      "price": 320
+    },
+    {
+      "id": "libre-6",
+      "name": "Accès libre",
+      "accessMode": "full",
+      "durationLabel": "6 mois",
+      "price": 530
+    },
+    {
+      "id": "libre-12",
+      "name": "Accès libre",
+      "accessMode": "full",
+      "durationLabel": "12 mois",
+      "price": 890
+    },
+    {
+      "id": "seances-20",
+      "name": "Pack séances",
+      "accessMode": "sessions",
+      "durationLabel": "20 séances",
+      "price": 200,
+      "sessionLimit": 20,
+      "validityMonths": 6
+    },
+    {
+      "id": "court-2",
+      "name": "Accès courte durée",
+      "accessMode": "short",
+      "durationLabel": "2 semaines",
+      "price": 70,
+      "validityDays": 14
+    }
+  ],
+  "promotion": {
+    "id": "rentree-2026",
+    "name": "Votre prochaine étape, à prix spécial.",
+    "startDate": "2026-08-28",
+    "endDate": null,
+    "active": false,
+    "publiclyVisible": true,
+    "prices": [
+      {
+        "planId": "libre-3",
+        "originalPrice": 320,
+        "promotionalPrice": 280
+      },
+      {
+        "planId": "libre-6",
+        "originalPrice": 530,
+        "promotionalPrice": 450
+      },
+      {
+        "planId": "libre-12",
+        "originalPrice": 890,
+        "promotionalPrice": 710
+      }
+    ]
+  },
+  "activities": [
+    {
+      "id": "attack",
+      "name": "Body Attack",
+      "category": "Cardio",
+      "intensity": null,
+      "description": "Du mouvement, du rythme et une énergie collective.",
+      "reservationRequired": false
+    },
+    {
+      "id": "combat",
+      "name": "Body Combat",
+      "category": "Cardio",
+      "intensity": null,
+      "description": "Libérez votre énergie avec un entraînement inspiré des sports de combat.",
+      "reservationRequired": false
+    },
+    {
+      "id": "pump",
+      "name": "Pump / Duo Pump",
+      "category": "Renforcement",
+      "intensity": null,
+      "description": "Travaillez votre force au rythme du groupe.",
+      "reservationRequired": false
+    },
+    {
+      "id": "spinning",
+      "name": "Spinning",
+      "category": "Cycling",
+      "intensity": null,
+      "description": "Un rendez-vous cardio sur vélo. Réservez votre place par téléphone.",
+      "reservationRequired": true
+    },
+    {
+      "id": "boxing",
+      "name": "Cross-boxing",
+      "category": "Training",
+      "intensity": null,
+      "description": "Faites le lien entre cardio et renforcement.",
+      "reservationRequired": false
+    },
+    {
+      "id": "challenges",
+      "name": "Challenges & événements",
+      "category": "Événement",
+      "intensity": null,
+      "description": "Cardio, force et entraînements collectifs : retrouvez les prochaines annonces du club.",
+      "reservationRequired": false
+    }
+  ],
+  "classSessions": [],
+  "gallery": []
+}

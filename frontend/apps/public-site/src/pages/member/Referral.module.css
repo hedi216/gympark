@@ -1,0 +1,47 @@
+.codeCard {
+  background: #1b231c;
+  color: var(--ink);
+  padding: var(--space-7);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.codeLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--slate-low);
+}
+
+.code {
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  margin-top: 4px;
+}
+
+.shareRow {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.copyBtn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--stone-high);
+  color: var(--ink);
+  border: 1px solid var(--stone-high);
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.copyBtn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}

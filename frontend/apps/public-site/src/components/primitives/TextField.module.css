@@ -1,0 +1,64 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.inputRow {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  background: var(--stone-high);
+  border: 1px solid var(--line);
+  padding: 13px 14px;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--ink);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.input.hasError {
+  border-color: var(--accent-ink);
+}
+
+.input.withToggle {
+  padding-right: 80px;
+}
+
+.toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.toggle:hover {
+  color: var(--accent);
+}
+
+.error {
+  font-size: 0.8125rem;
+  color: var(--accent-ink);
+}

@@ -1,0 +1,25 @@
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.input {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.text {
+  font-size: 0.875rem;
+  color: var(--slate);
+}
+
+.text a {
+  color: var(--ink);
+  text-decoration: underline;
+}

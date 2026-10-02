@@ -1,0 +1,89 @@
+.item {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--line);
+  align-items: flex-start;
+}
+
+.dotCol {
+  position: relative;
+  width: 8px;
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+
+.unreadDot {
+  position: relative;
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+}
+
+.unreadDot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: notifyPulse 1.8s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+@keyframes notifyPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unreadDot::after {
+    animation: none;
+    display: none;
+  }
+}
+
+.body {
+  flex: 1;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.category {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--slate);
+}
+
+.time {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--slate);
+  white-space: nowrap;
+}
+
+.title {
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.message {
+  color: var(--slate);
+  font-size: 0.875rem;
+  margin-top: 2px;
+}
+
+.unread .title {
+  font-weight: 700;
+}

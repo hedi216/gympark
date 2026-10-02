@@ -1,0 +1,121 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-8) var(--space-6);
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: #1b231c;
+  color: var(--ink);
+  padding: var(--space-7);
+  border: 1px solid var(--line-on-ink);
+  transition: transform 220ms ease-out;
+  will-change: transform;
+  box-shadow: 0 30px 60px -30px rgba(9, 11, 12, 0.5);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-7);
+}
+
+.mark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.markIcon {
+  height: 26px;
+  width: auto;
+}
+
+.level {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 4px 10px;
+}
+
+.name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: var(--space-6);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line-on-ink);
+}
+
+.row span:first-child {
+  color: var(--slate-low);
+}
+
+.qrWrap {
+  margin-top: var(--space-7);
+  display: flex;
+  justify-content: center;
+}
+
+.qr {
+  width: 168px;
+  height: 168px;
+  background: var(--stone-high);
+  background-image:
+    repeating-linear-gradient(90deg, var(--ink) 0 5px, transparent 5px 9px),
+    repeating-linear-gradient(0deg, var(--ink) 0 5px, transparent 5px 9px);
+  background-blend-mode: multiply;
+  padding: 10px;
+}
+
+.hint {
+  margin-top: var(--space-4);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--slate-low);
+}
+
+.actions {
+  margin-top: var(--space-7);
+  display: flex;
+  gap: var(--space-3);
+}
+
+.markIcon {
+  width: 62px;
+  height: 62px;
+}
+@media (max-width: 560px) {
+  .wrap {
+    padding: 20px 0;
+  }
+  .card {
+    padding: 24px;
+  }
+  .actions {
+    flex-wrap: wrap;
+  }
+  .row {
+    gap: 10px;
+    font-size: 11px;
+  }
+}

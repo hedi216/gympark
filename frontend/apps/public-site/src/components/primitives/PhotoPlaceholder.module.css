@@ -1,0 +1,43 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(155deg, #2a2820 0%, #15140f 55%, #0c0b08 100%);
+  min-height: 260px;
+}
+
+.frame::before {
+  /* Directional light sweep, standing in for a real photograph's key light */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 90% at 78% 8%,
+    rgba(245, 246, 242, 0.16),
+    transparent 55%
+  );
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+
+.caption {
+  position: absolute;
+  left: var(--space-4);
+  bottom: var(--space-4);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 246, 242, 0.78);
+}
+
+.caption .index {
+  color: var(--accent);
+}

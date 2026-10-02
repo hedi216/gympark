@@ -1,0 +1,27 @@
+# .NET
+bin/
+obj/
+*.user
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Editors
+.vs/
+.vscode/*
+!.vscode/extensions.json
+
+# Env
+.env
+.env.local
+
+# OS
+Thumbs.db
+.DS_Store
+
+**/test-results/
+**/playwright-report/
+**/artifacts/

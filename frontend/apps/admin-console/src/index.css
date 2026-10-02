@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap");
+:root {
+  font-family: Inter, Arial, sans-serif;
+  color: #f5f6f2;
+  background: #090b0c;
+  color-scheme: dark;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+a {
+  color: inherit;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+h1,
+h2,
+p {
+  margin: 0;
+}
+h1,
+h2 {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+}
+a,
+button {
+  min-height: 44px;
+}
+:focus-visible {
+  outline: 2px solid #a9cf03;
+  outline-offset: 4px;
+}
+p {
+  line-height: 1.7;
+  color: #a9afb0;
+}
+button,
+a {
+  touch-action: manipulation;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "gym-platform-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:public": "npm run dev -w apps/public-site",
+    "dev:portal": "npm run dev -w apps/member-portal",
+    "dev:admin": "npm run dev -w apps/admin-console"
+  }
+}

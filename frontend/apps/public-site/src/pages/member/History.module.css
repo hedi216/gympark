@@ -1,0 +1,68 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: var(--space-4);
+}
+
+.railCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  background: var(--line);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.entry.current .dot {
+  background: var(--accent);
+}
+
+.rail {
+  width: 1px;
+  flex: 1;
+  background: var(--line);
+  margin-top: 4px;
+}
+
+.body {
+  padding-bottom: var(--space-7);
+}
+
+.entryTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.entryTitle {
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.entryDates {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--slate);
+  margin-top: 4px;
+}
+
+.entryMeta {
+  display: flex;
+  gap: var(--space-6);
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--slate);
+}

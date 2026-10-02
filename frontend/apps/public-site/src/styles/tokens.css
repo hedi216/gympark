@@ -1,0 +1,40 @@
+:root {
+  --ink: #f5f6f2;
+  --ink-soft: #e1e6dc;
+  --stone: #090b0c;
+  --stone-high: #151819;
+  --bone: #1d2420;
+  --slate: #acb4ae;
+  --slate-low: #a2aba4;
+  --line: #343d36;
+  --line-on-ink: #3c493b;
+  --accent: #a9cf03;
+  --accent-ink: #bdd957;
+  --accent-tint: #263211;
+  --accent-soft: #c4e665;
+  --font-display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  /* Scale */
+  --step-display: clamp(2.75rem, 2rem + 3.2vw, 5rem);
+  --step-h1: clamp(2.25rem, 1.8rem + 2vw, 3.4rem);
+  --step-h2: clamp(1.6rem, 1.4rem + 1vw, 2.25rem);
+  --step-h3: 1.25rem;
+  --step-body: 1rem;
+  --step-meta: 0.8125rem;
+
+  /* Spacing rhythm */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 72px;
+  --space-9: 104px;
+  --space-10: 144px;
+
+  --content-max: 1320px;
+  --edge: clamp(20px, 5vw, 72px);
+}
