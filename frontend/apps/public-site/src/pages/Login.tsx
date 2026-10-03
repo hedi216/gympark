@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ADMIN_URL, errorMessage, useAuth } from "@gym-platform/api-client";
+import { AppDownloadButtons } from "@gym-platform/design-system";
 import { AuthLayout } from "../components/auth/AuthLayout";
 import { TextField } from "../components/primitives/TextField";
 import { Button } from "../components/primitives/Button";
@@ -40,6 +41,7 @@ export function Login() {
       title="Connexion"
       subtitle="Retrouvez votre espace Gym Park avec les accès remis par l’accueil."
       onSubmit={submit}
+      afterForm={<AppDownloadButtons />}
       footer={
         <>
           {error && (

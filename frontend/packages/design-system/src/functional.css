@@ -315,6 +315,68 @@
 .check-field input {
   flex-shrink: 0;
 }
+.app-downloads {
+  border-top: 1px solid #39412f;
+  margin-top: 28px;
+  padding-top: 22px;
+}
+.app-downloads-title {
+  color: #b9c2b9;
+  font-size: 12px;
+  margin: 0 0 14px;
+  text-align: center;
+}
+.app-downloads-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.app-download-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 68px;
+  padding: 12px;
+  border: 1px solid #526049;
+  background: #101411;
+  color: #f5f6f2;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.app-download-button:hover {
+  border-color: #a9cf03;
+  background: #1d2515;
+}
+.app-download-button:focus-visible {
+  outline: 2px solid #a9cf03;
+  outline-offset: 3px;
+}
+.app-download-button svg {
+  flex-shrink: 0;
+  color: #a9cf03;
+}
+.app-download-button strong,
+.app-download-button small {
+  display: block;
+  line-height: 1.5;
+}
+.app-download-button strong {
+  font-size: 12px;
+}
+.app-download-button small {
+  color: #aab4a3;
+  font-size: 10px;
+}
+.app-downloads-message {
+  font-size: 14px;
+  line-height: 1.7;
+}
+@media (max-width: 420px) {
+  .app-downloads-buttons {
+    grid-template-columns: 1fr;
+  }
+}
 @media (max-width: 600px) {
   .date-grid,
   .member-stats {

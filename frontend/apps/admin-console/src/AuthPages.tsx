@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { PUBLIC_URL, errorMessage, useAuth } from "@gym-platform/api-client";
+import { AppDownloadButtons } from "@gym-platform/design-system";
 import config from "../../../../config/gym-park.json" with { type: "json" };
 export function StaffLogin() {
   const auth = useAuth();
@@ -64,6 +65,7 @@ export function StaffLogin() {
         </button>
         <a href={`${PUBLIC_URL}/connexion`}>Espace adhérent ↗</a>
       </form>
+      <AppDownloadButtons />
     </AuthFrame>
   );
 }

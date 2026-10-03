@@ -8,6 +8,7 @@ interface AuthLayoutProps {
   onSubmit: (e: FormEvent) => void;
   children: ReactNode;
   footer: ReactNode;
+  afterForm?: ReactNode;
 }
 
 export function AuthLayout({
@@ -16,6 +17,7 @@ export function AuthLayout({
   onSubmit,
   children,
   footer,
+  afterForm,
 }: AuthLayoutProps) {
   return (
     <div className={styles.screen}>
@@ -29,6 +31,7 @@ export function AuthLayout({
 
           {footer}
         </form>
+        {afterForm && <div className={styles.afterForm}>{afterForm}</div>}
       </div>
     </div>
   );
