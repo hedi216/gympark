@@ -1,893 +1,1531 @@
-You are working on an existing project called GymPlatform.
+We are continuing the Gym Park application.
 
-IMPORTANT: this repository was originally designed for another gym/client. We are now adapting the entire product for a completely different real client:
+Repository:
+hedi216/gympark
 
-GYM PARK
-Ezzahra, Tunisia
 
-This is NOT a light reskin.
-
-I want a complete visual, UX, content and brand transformation of the existing application while preserving the useful technical architecture and existing functional foundations.
-
-==================================================
-1. ABSOLUTE RULE: DO NOT MIX THE OLD CLIENT
-==================================================
-
-The existing repository contains branding and information for another gym, notably:
-- Meliora
-- Sousse
-- Khzema / Khzema Est
-- old Meliora logos
-- old Meliora photos/videos
-- beige/stone/red visual identity
-- old addresses and phone numbers
-- illustrative/fake membership prices
-- illustrative promotions
-- old testimonials
-- old amenities and physical-club claims
-- old SEO metadata
-- old member rewards branded as FitPoints
-- old client-specific copy
-
-Treat the existing repository as a TECHNICAL BASE ONLY.
-
-GYM PARK is a separate business.
-
-Perform a repository-wide audit and remove or replace every client-specific trace from the previous brand.
-
-Search for terms such as:
-Meliora
-Khzema
-Sousse
-55057537
-Rue Colonel Garnaoui
-FitPoints
-meliora_
-meliora-
-and any previous-client-specific content.
-
-Do not leave old branding hidden in:
-- SEO metadata
-- alt text
-- aria labels
-- localStorage keys
-- member pages
-- footer
-- login/signup
-- backend defaults
-- OpenGraph tags
-- image names
-- placeholder copy
-- test/demo cards.
-
-Do NOT reuse previous-client physical photos or videos as if they belonged to Gym Park.
-
-In particular, inspect old assets such as:
-- meliora-*
-- hero-brand.jpg
-- brandstory-facade.png
-- zone-*.png
-- intro.mp4
-- club-hero.mp4
-- marble backgrounds
-and stop referencing them wherever they are tied to the former client.
-
-==================================================
-2. PROVIDED ASSETS — SOURCE OF TRUTH
-==================================================
-
-I will provide you with:
-
-1. A transparent PNG of the real GYM PARK logo.
-2. A new cinematic Gym Park hero background image.
-3. A screenshot of an older Gym Park hero design that I want you to use as VISUAL / LAYOUT inspiration.
-
-The real transparent logo is the authoritative logo.
-
-DO NOT redraw the logo.
-DO NOT modify its typography.
-DO NOT replace it with generated text.
-DO NOT recreate it with CSS.
-Use the provided logo file.
-
-The generated gym photograph must be used as the principal hero background.
-
-The old hero screenshot is a DESIGN REFERENCE, not an image to put directly into the page.
-
-Interpret its composition:
-- logo top-left
-- navigation in the top area
-- clear CTA top-right
-- very large headline left
-- athlete/action imagery primarily right
-- black/dark environment
-- lime yellow-green accent
-- strong contrast
-- small supporting information below headline
-- energetic fitness aesthetic
-- clear but not excessive CTAs
-- premium and professional presentation.
-
-==================================================
-3. REAL GYM PARK INFORMATION
-==================================================
-
-Use these details as the current source of truth.
-
-BUSINESS
-
-Name:
-GYM PARK
-
-Location:
-Ezzahra, Tunisia
-
-Primary public location text:
-Avenue Habib Bourguiba, Ezzahra
-
-Some public listings also reference:
-5 Rue Hassouna Zaouali, Ezzahra 2034
-
-Do not show contradictory addresses simultaneously in prominent UI.
-Use:
-"Avenue Habib Bourguiba, Ezzahra"
-as the primary visitor-facing location for now.
-
-Phone:
-+216 29 800 819
-
-Phone link:
-tel:+21629800819
-
-Instagram:
-https://www.instagram.com/gym_park_/
-
-Facebook references publicly exist for Gym Park, but Instagram should be the principal social link in this redesign.
-
-For Maps, avoid carrying over Meliora coordinates.
-Use a Google Maps search URL/query for:
-Gym Park Ezzahra Tunisia
-unless an exact verified Gym Park coordinate already exists in the new supplied data.
-
-==================================================
-4. OPENING HOURS
-==================================================
-
-These changed starting 1 September 2026.
-
-Monday:    07:00 – 22:00
-Tuesday:   07:00 – 22:00
-Wednesday: 07:00 – 22:00
-Thursday:  07:00 – 22:00
-Friday:    07:00 – 22:00
-Saturday:  08:00 – 18:00
-Sunday:    09:00 – 18:00
-
-Update:
-- public website
-- opening-hours ticker
-- open/closed logic
-- contact page
-- club page
-- backend GymSettings / OpeningHours defaults or seed data where appropriate.
-
-The live open/closed status component can remain, but it must calculate from these hours.
-
-==================================================
-5. OFFICIAL STANDARD PRICING
-==================================================
-
-Replace the illustrative Meliora pricing completely.
-
-GYM PARK standard pricing:
-
-MORNING ACCESS
-Access period:
-07:00 – 13:00
-
-1 month:
-80 DT
-
-3 months:
-210 DT
-
-
-OPEN / FULL ACCESS
-
-1 month:
-130 DT
-
-3 months:
-320 DT
-
-6 months:
-530 DT
-
-12 months:
-890 DT
-
-
-SESSION PACK
-
-20 sessions:
-200 DT
-
-Validity:
-6 months
-
-
-SHORT ACCESS
-
-2 weeks:
-70 DT
-
-
-REGISTRATION FEE
-
-30 DT
-
-The registration fee must be presented separately and clearly so visitors understand that it is not the membership price itself.
-
-Design the pricing UI so the different access types are immediately understandable:
-- Morning Access
-- Full Access
-- Session Pack
-- Short Access
-
-Do not force all of these into identical generic pricing cards if another information architecture communicates the difference better.
-
-==================================================
-6. RECENT PROMOTION
-==================================================
-
-Gym Park publicly announced this promotion on 28 August 2026:
-
-3 months:
-280 DT instead of 320 DT
-
-6 months:
-450 DT instead of 530 DT
-
-12 months:
-710 DT instead of 890 DT
 
 IMPORTANT:
-No reliable end date is supplied here.
+The previous branding/redesign work has already been validated and pushed.
+DO NOT redo the public branding.
+DO NOT replace the Gym Park design.
+DO NOT rewrite the project from scratch.
 
-Therefore the promotion must NOT be embedded throughout the application as an eternal hardcoded price.
+This phase is about REAL AUTHENTICATION, USER MANAGEMENT, STAFF ADMINISTRATION,
+COURSE MANAGEMENT, AND COURSE RESERVATIONS.
 
-Create a centralized promotion configuration / backend-compatible structure with:
-- original price
-- promotional price
-- start date
-- optional end date
-- active flag
-- publiclyVisible flag.
-
-The public UI should only display this promotion when active.
-
-If there is currently no reliable admin/API integration for this, put it behind one explicit centralized configuration flag so it can be enabled/disabled in one place.
-
-Do not invent an expiration date.
+Inspect the existing repository before changing anything.
 
 ==================================================
-7. CLASSES / ACTIVITIES
+1. FIRST: AUDIT THE EXISTING IMPLEMENTATION
 ==================================================
 
-Gym Park actively communicates around group classes and coached events.
+Before coding, inspect:
 
-Known/recent examples include:
-- Body Attack
-- Body Combat
-- Pump / Duo Pump
-- Spinning
-- Cross-boxing
-- Cardio challenges
-- Strength / force challenges
-- group training
-- coached special events.
+backend/
+frontend/apps/admin-console/
+frontend/apps/public-site/
+frontend/apps/member-portal/
 
-Spinning reservations have publicly been requested by phone at:
-29 800 819
+Pay particular attention to:
 
-Some classes/events have dedicated women's sessions.
+- Member
+- StaffUser
+- StaffRole
+- PasswordHash fields
+- GymDbContext
+- Program.cs
+- current migrations
+- public-site AuthContext
+- Login.tsx
+- Signup.tsx
+- Classes.tsx
+- gymInfo classSessions
+- admin-console
+- member dashboard / espace membre
 
-Create a proper "Cours" / "Classes" experience in the public site.
+There is already:
+- a Member entity
+- a StaffUser entity
+- a StaffRole enum
+- a Classes public page
+- an admin-console shell
+- a member experience
 
-Suggested route:
- /cours
+BUT much of the frontend authentication/member state is still demo/static.
 
-It should support:
-- class/activity cards
-- coach name when available
-- category
-- intensity
-- date/time
-- women-only indicator where applicable
-- reservation-required indicator
-- reservation phone CTA
-- weekly schedule structure
-- special events/challenges.
-
-DO NOT invent a permanent weekly schedule based on one historical Instagram post.
-
-Build the architecture/UI so the schedule can change easily.
-
-If backend persistence for classes does not exist yet, do not perform a destructive architecture rewrite.
-
-You may either:
-A. introduce a clean additive GroupClass/ClassSession model and migration, or
-B. create a centralized typed frontend configuration with a clear future API integration point.
-
-Choose the approach that best matches the current maturity of the repository.
+Do not create parallel duplicate functionality without checking what already exists.
 
 ==================================================
-8. BRAND DIRECTION
+2. REQUIRED ROLE MODEL
 ==================================================
 
-This website must visually feel like GYM PARK.
+For this phase, the business permissions are deliberately simple.
 
-Main style:
-- black
-- graphite
-- dark charcoal
-- white
-- strong lime / yellow-green accent matching the supplied logo.
+There are exactly 3 user categories:
 
-Use the supplied logo to determine the closest brand green.
+ADMIN
+EMPLOYEE
+MEMBER
 
-A reasonable fallback token is approximately:
-#B7E000
+French labels:
 
-But prefer matching the actual supplied logo.
+ADMIN
+EMPLOYÉ
+ADHÉRENT
 
-Example system:
+The important rule is:
 
---gp-black: #090B0C
---gp-charcoal: #151819
---gp-surface: #1D2021
---gp-white: #F5F6F2
---gp-muted: #9EA4A6
---gp-green: derived from supplied Gym Park logo
+ADMIN and EMPLOYEE have the SAME operational management permissions
+except for EMPLOYEE ACCOUNT MANAGEMENT.
 
-NO Meliora red.
-NO beige luxury-club visual identity.
-NO classical/Cinzel identity.
+ADMIN:
+- manage members
+- create members
+- edit members
+- deactivate/reactivate members
+- reset member passwords
+- manage subscriptions
+- manage attendance
+- manage payments where functionality exists
+- manage courses
+- manage course schedules
+- manage course reservations
+- book/cancel a class for a member
+- view participant lists
+- manage other normal gym operational modules
+- AND manage EMPLOYEE accounts
 
-Typography should be modern, athletic and geometric.
+EMPLOYEE:
+- everything above EXCEPT employee management
+- can create/manage MEMBER accounts
+- can NEVER create an employee
+- can NEVER edit an employee
+- can NEVER disable an employee
+- can NEVER reset an employee password
+- can NEVER change somebody to EMPLOYEE or ADMIN
+- cannot access employee-management API endpoints
 
-Use:
-- strong condensed/geometric display typography for hero headings
-- clean sans-serif for UI/body copy
-- strong numeric hierarchy for prices.
+MEMBER:
+- can access only their own member area
+- see their own subscription/data
+- view classes
+- reserve classes
+- cancel their own class reservations
+- see their own reservations
+- edit allowed profile fields
+- no administrative access
 
-Avoid excessive pill-shaped SaaS cards.
+SECURITY MUST BE ENFORCED SERVER-SIDE.
 
-The design should feel:
-FITNESS
-ENERGY
-PERFORMANCE
-COMMUNITY
-MODERN
-DARK
-PREMIUM
-DIRECT
+Do not merely hide UI buttons.
 
-Not:
-corporate dashboard
-luxury hotel
-generic SaaS landing page.
+An employee manually calling an employee-management API endpoint must receive
+403 Forbidden.
 
 ==================================================
-9. NEW HERO SECTION
+3. ONLY ONE ADMIN
 ==================================================
 
-The homepage hero is one of the most important parts.
+For now, Gym Park must have ONE bootstrap administrator.
 
-Rebuild it based on the supplied old Gym Park screenshot and the supplied new hero background.
+Do NOT create a UI for creating additional ADMIN users.
 
-Desktop concept:
+The normal user creation UI must only allow:
 
-- approximately full viewport height
-- new hero background covers the full section
-- athlete sits predominantly toward the right side
-- dark gradient overlay on left for text readability
-- navigation overlays or integrates naturally into hero
-- logo at upper left
-- desktop navigation centered/right
-- strong JOIN / REJOINDRE CTA at upper right.
+- EMPLOYEE
+- MEMBER
 
-Hero copy can follow this direction:
+ADMIN is a protected bootstrap/system role.
 
-Small eyebrow:
-MORE THAN A GYM
+Create bootstrap logic:
 
-Main:
-BUILD A
-STRONGER
-YOU
+If no ADMIN account exists, create exactly one.
 
-Highlight "YOU" using Gym Park green.
+Do NOT commit a plaintext permanent password into Git.
 
-Supporting line:
-Training. Community. Progress.
+For development, the bootstrap process may create:
 
-Use Gym Park's social communication direction as secondary inspiration:
-Train Hard • Get Strong • Stay Together
+email:
+admin@gympark.local
 
-Primary CTA:
-REJOINDRE GYM PARK
+and generate a cryptographically secure temporary password.
+
+The generated bootstrap temporary password must be shown clearly in the
+development seed/startup output or another secure one-time setup mechanism.
+
+In your final implementation report, tell me exactly how I retrieve the initial
+administrator credentials.
+
+For production, support environment/configuration values such as:
+
+GYMPARK_BOOTSTRAP_ADMIN_EMAIL
+GYMPARK_BOOTSTRAP_ADMIN_TEMP_PASSWORD
+
+or equivalent strongly typed configuration.
+
+Do NOT expose bootstrap credentials through a public HTTP endpoint.
+
+Once an admin exists, startup must NOT create another one.
+
+==================================================
+4. AUTHENTICATION ARCHITECTURE
+==================================================
+
+There is currently no proper production authentication flow.
+
+Implement real authentication in the .NET backend.
+
+Use secure password hashing.
+
+Prefer established ASP.NET Core mechanisms such as:
+- PasswordHasher<TUser>
 or
-VOIR LES ABONNEMENTS
+- ASP.NET Core Identity components where appropriate
 
-Secondary CTA:
-DÉCOUVRIR LE CLUB
+Do NOT:
+- store plaintext passwords
+- encrypt reversible passwords
+- use SHA256 alone
+- store temporary passwords in database plaintext.
 
-If there is no valid new Gym Park video asset, DO NOT use the old Meliora video simply to make a "Watch Video" button work.
+Implement a proper authenticated principal containing:
+- UserId
+- Email
+- Role
 
-Either:
-- scroll to the club/classes section,
-or
-- hide/deactivate video-specific interaction until a real asset exists.
+Use a clean JWT/access-token authentication architecture suitable for the
+existing React apps.
 
-Below/inside the hero, preserve the spirit of the old screenshot with 3 small supporting points, but do not invent statistics:
+If you use refresh tokens, store them securely and make them revocable.
 
-01
-ÉQUIPEMENT
+If using cookies, configure:
+- HttpOnly
+- Secure in production
+- appropriate SameSite
+- CORS credentials correctly.
 
-02
-COACHING
-
-03
-COMMUNAUTÉ
-
-or similar verified/general concepts.
-
-Do not display fake "500+ members" or any other unsupported membership count.
-
-==================================================
-10. HOMEPAGE INFORMATION ARCHITECTURE
-==================================================
-
-Redesign the complete homepage.
-
-Recommended order:
-
-HERO
-
-OPEN NOW / HOURS STRIP
-Show today's status and closing time.
-
-MEMBERSHIP / PRICING PREVIEW
-Show real Gym Park plans.
-
-PROMOTION
-Only if active.
-
-CLASSES
-Body Attack, Body Combat, Pump, Spinning, challenges, etc.
-
-WHY GYM PARK
-Focus on training, coaching and community.
-Do not use invented equipment counts.
-
-MEMBER EXPERIENCE
-Present the digital member platform:
-- membership status
-- member card
-- attendance
-- payments
-- loyalty
-- notifications
-etc., but only claim features as operational if they actually exist.
-
-LOCATION / CONTACT
-Gym Park, Ezzahra
-29 800 819
-Instagram
-Directions
-
-FINAL CTA
-Rejoindre Gym Park.
+Choose the cleanest architecture compatible with the current frontend/backend
+structure.
 
 ==================================================
-11. PUBLIC NAVIGATION
+5. CONSIDER A SHARED USER ACCOUNT MODEL
 ==================================================
 
-A clean primary navigation could become:
+The existing system currently has authentication-like fields separately on:
 
-Accueil
-Le Club
-Cours
+Member
+StaffUser
+
+This can cause duplicated authentication logic and duplicate emails across
+tables.
+
+Inspect the existing schema carefully.
+
+Prefer a clean centralized authentication entity such as:
+
+UserAccount
+- Id
+- Email
+- NormalizedEmail
+- PasswordHash
+- Role
+- MustChangePassword
+- IsActive
+- CreatedAt
+- UpdatedAt
+- LastLoginAt
+- FailedLoginAttempts if implemented
+- LockedUntil if implemented
+- MemberId nullable
+- StaffUserId nullable
+
+With a UNIQUE normalized email index.
+
+MEMBER accounts may link to Member.
+
+ADMIN/EMPLOYEE accounts may link to StaffUser.
+
+Do NOT blindly create this exact schema if the existing architecture offers a
+cleaner solution.
+
+But authentication should have ONE authoritative email identity source.
+
+If old Member.PasswordHash and StaffUser.PasswordHash become obsolete, migrate
+safely and document them instead of keeping two competing auth systems.
+
+All migrations must be ADDITIVE and data-safe.
+
+==================================================
+6. TEMPORARY PASSWORD USER CREATION FLOW
+==================================================
+
+This is an important requirement.
+
+The ADMIN or EMPLOYEE does NOT manually choose the member password.
+
+Creation form:
+
+Email
+User type / category
+
+For ADMIN:
+category choices:
+- Adhérent
+- Employé
+
+For EMPLOYEE:
+category:
+- Adhérent only
+
+Potential profile information such as name/phone may be completed immediately
+or later, but email + role are enough for account provisioning.
+
+When clicking:
+"Créer le compte"
+
+Backend must:
+
+1. validate normalized email uniqueness
+2. create the appropriate account/profile
+3. generate a cryptographically secure temporary password
+4. hash it immediately
+5. save only the hash
+6. set:
+   MustChangePassword = true
+7. return the temporary password ONLY in that successful creation response.
+
+Frontend then opens a clear modal:
+
+COMPTE CRÉÉ
+
+Email:
+user@example.com
+
+Mot de passe temporaire:
+XXXXXXXXXXXX
+
+[ Copier le mot de passe ]
+
+Message:
+"Ce mot de passe ne sera plus affiché. L’utilisateur devra le modifier lors de
+sa première connexion."
+
+After the modal is closed, the temporary password must NOT be retrievable.
+
+The database must NEVER contain that plaintext temporary password.
+
+==================================================
+7. TEMPORARY PASSWORD FORMAT
+==================================================
+
+Generate a secure but reasonably copyable temporary password.
+
+Example concept only:
+
+Gp-7KQ4-M9TX
+
+Do NOT use predictable values such as:
+password123
+GymPark123
+email prefixes
+timestamps only.
+
+Use a cryptographically secure random generator.
+
+Aim for at least ~12 characters with suitable entropy.
+
+==================================================
+8. FORCED FIRST PASSWORD CHANGE
+==================================================
+
+This is mandatory.
+
+When a user logs in using a temporary password:
+
+authentication succeeds,
+
+BUT if:
+
+MustChangePassword == true
+
+the user must be redirected immediately to:
+
+/changer-mot-de-passe
+
+or equivalent.
+
+They must NOT be allowed to enter the member dashboard/admin console before
+changing it.
+
+Backend authorization must also enforce this.
+
+Do NOT rely only on frontend redirects.
+
+While MustChangePassword is true, allow only endpoints such as:
+
+- GET /auth/me
+- POST /auth/change-password
+- POST /auth/logout
+
+and other absolutely necessary authentication endpoints.
+
+After successful password change:
+
+MustChangePassword = false
+
+Then generate/refresh the proper authenticated session if necessary.
+
+Password-change screen:
+
+Mot de passe temporaire / actuel
+Nouveau mot de passe
+Confirmer le nouveau mot de passe
+
+Validate password policy.
+
+==================================================
+9. PASSWORD RESET BY STAFF
+==================================================
+
+ADMIN:
+can reset:
+- MEMBER
+- EMPLOYEE passwords
+
+EMPLOYEE:
+can reset:
+- MEMBER passwords only
+
+Password reset works like account creation:
+
+- generate new temporary password
+- hash it
+- MustChangePassword = true
+- invalidate existing sessions/tokens if possible
+- display temporary password exactly once
+- copy button.
+
+Never send passwords by email yet.
+
+Email delivery will be implemented later.
+
+==================================================
+10. ACCOUNT STATUS
+==================================================
+
+Support account activation/deactivation.
+
+IsActive = false must prevent login.
+
+ADMIN:
+can deactivate/reactivate employees and members.
+
+EMPLOYEE:
+can deactivate/reactivate members only.
+
+Do not permanently delete accounts by default.
+
+Use soft operational deactivation.
+
+==================================================
+11. ADMIN CONSOLE
+==================================================
+
+The current admin-console is mostly a shell.
+
+Turn it into a REAL working management application.
+
+Both:
+
+ADMIN
+EMPLOYEE
+
+use the admin-console.
+
+After login, both should see a professional Gym Park management dashboard.
+
+Suggested navigation:
+
+Vue d’ensemble
+Adhérents
 Abonnements
-Offres
-Contact
+Présences
+Paiements
+Cours
+Réservations
+Employés
+Paramètres
 
-Secondary/actions:
-Espace membre
-Rejoindre
+BUT:
 
-On mobile:
-use a polished full-screen or drawer menu that maintains the black/green visual identity.
+"Employés" must only appear for ADMIN.
 
-==================================================
-12. CLUB PAGE
-==================================================
-
-Remove the previous Meliora physical-club story.
-
-Do not show:
-- old Meliora facade
-- old Meliora equipment pictures
-- invented rack quantities
-- fake square-meter figures
-- previous Google Business amenities
-- previous owner/company claims.
-
-Build Gym Park's club page around verified/general content:
-- Musculation
-- Cardio
-- Cours collectifs
-- Coaching
-- Community
-- Challenges/events.
-
-If there are not enough genuine Gym Park photos supplied, do NOT present generated or old-client photography as documentary photos of the actual facility.
-
-Generated imagery may only be used as clearly decorative brand imagery.
-
-Leave gallery architecture ready for real client photos.
+More importantly, the backend endpoint must also require ADMIN.
 
 ==================================================
-13. PRICING PAGE
+12. USER MANAGEMENT — ADHÉRENTS
 ==================================================
 
-Completely redesign /abonnements around real Gym Park pricing.
+Create a proper Adhérents page.
 
-The page should make the distinction between:
+ADMIN and EMPLOYEE can access it.
 
-Morning access
-07:00–13:00
+Features:
 
-Full access
+- search by name/email/member number
+- filter active/inactive
+- pagination
+- member details
+- account status
+- subscription information if available
+- upcoming course reservations
+- creation date
+- edit profile
+- deactivate/reactivate
+- reset password
+- create member account.
 
-20-session pack
+Create member modal/form:
 
-2-week access
+Email *
+First name optional
+Last name optional
+Phone optional
 
-Registration fee
+If profile fields are required by the existing Member entity, handle incomplete
+profiles cleanly.
 
-very obvious.
+Do not populate fake personal information.
 
-For promotional plans:
-show original price crossed out and promotional price only when the promotion flag is active.
+Generate member number automatically if required.
 
-Do not calculate misleading monthly equivalents unless genuinely useful.
-
-Use DT as the visual currency label used by the client.
-
-==================================================
-14. OFFERS PAGE
-==================================================
-
-Delete all old fabricated offers such as:
-- student discount
-- duo discount
-- old annual discount
-- fictional FitPoints promotion
-unless they are explicitly present in Gym Park data.
-
-The page should consume centralized promotion data.
-
-If no promotion is active, display a polished empty state rather than fake deals.
+Ensure concurrency-safe uniqueness.
 
 ==================================================
-15. LOYALTY / MEMBER FEATURES
+13. EMPLOYEE MANAGEMENT
 ==================================================
 
-The existing platform includes a loyalty concept.
+ADMIN ONLY.
 
-Keep the architecture if useful, but remove "FitPoints" branding from the previous design.
+Create:
 
-Use:
-"Points Gym Park"
-or simply
-"Points fidélité"
+Employés
 
-Do not state specific rewards, thresholds or advantages as real Gym Park business rules unless they are actually implemented/confirmed.
+page.
 
-Demo/example data inside authenticated prototypes can be clearly labelled as demo data.
+Features:
 
-==================================================
-16. MEMBER AREA
-==================================================
+- list employees
+- search
+- active/inactive filter
+- create employee
+- edit profile
+- deactivate/reactivate employee
+- reset temporary password
+- see created date / last login where available.
 
-The existing public-site also contains /espace-membre routes.
+Employee creation:
 
-Rebrand the entire member area.
+Email *
+First name optional
+Last name optional
 
-It must visually belong to the same product:
-dark graphite UI
-lime green accent
-Gym Park logo
-clean fitness dashboard aesthetic.
+Role is automatically:
+EMPLOYEE
 
-Audit and redesign:
-- dashboard
-- membership
-- digital member card
-- attendance
-- loyalty
-- rewards
-- challenges
-- referral
-- payments
-- membership history
-- notifications
-- support
-- profile.
+Do not expose multiple staff levels such as:
+Manager
+Reception
+Support
+Marketing
 
-Remove Meliora names and old pricing from all demo records.
+unless they are preserved internally only for migration compatibility.
 
-Do not silently claim features are connected to a real backend if they currently are only mocked.
+Business authorization for this phase is simply:
+ADMIN / EMPLOYEE / MEMBER.
 
-Keep mock/demo state clearly separated from production data.
+EMPLOYEES cannot see or call this feature.
 
 ==================================================
-17. LOGIN / SIGNUP
+14. LOGIN EXPERIENCE
 ==================================================
 
-Rebuild login and signup visually for Gym Park.
+Replace demo authentication.
 
-Use the new logo and visual system.
+Current public-site AuthContext uses local demo session behavior.
+Remove demo authentication as the authoritative auth mechanism.
 
-Signup must display real plan options.
+Implement real API authentication.
 
-Include the 30 DT registration fee transparently where relevant.
+Public/member login can remain:
 
-No Meliora text anywhere.
+/connexion
 
-==================================================
-18. ADMIN-CONSOLE AND MEMBER-PORTAL WORKSPACES
-==================================================
+Fields:
+Email
+Mot de passe
 
-The repository also contains separate:
-apps/member-portal
-apps/admin-console
+After login:
 
-They currently appear to still contain default/scaffold UI.
+MEMBER
+→ /espace-membre
 
-Do not leave default Vite/React starter screens in a client-ready repository.
+ADMIN or EMPLOYEE
+→ admin-console
 
-However, do not duplicate an already working member implementation unnecessarily.
+Configure the admin-console URL using environment configuration rather than
+hardcoding production URLs.
 
-For this phase:
-
-- Give admin-console a proper Gym Park branded application shell.
-- Give member-portal a Gym Park branded application shell if it is intended for future separation.
-- If the actual current member functionality lives under public-site /espace-membre, preserve that architecture instead of performing an unnecessary migration.
-- Document which member surface is currently authoritative.
-
-Remove all Vite starter imagery/text.
+Also allow the admin-console to have its own login entry point if needed.
 
 ==================================================
-19. BACKEND
+15. DISABLE PUBLIC SELF-SIGNUP FOR NOW
 ==================================================
 
-Preserve the existing .NET architecture and domain model wherever possible.
+IMPORTANT BUSINESS CHANGE:
 
-Update old default gym settings:
+For now, users do NOT create their own accounts.
 
-Name:
-Gym Park
+Accounts are provisioned by Gym Park staff.
 
-City:
-Ezzahra
+Therefore:
 
-Country:
-Tunisia
+- public Signup.tsx must NOT create accounts
+- remove or disable real self-registration API behavior
+- don't leave a fake signup that appears functional.
 
-Phone:
-29 800 819
+If /inscription remains for marketing reasons, convert it to something like:
 
-Primary brand color:
-dark/black
+"Inscription au club"
 
-Accent:
-Gym Park green
+with:
+- phone/contact CTA
+- subscription information
+- message that the reception creates the member access.
 
-Update opening-hours source/seed as specified above.
-
-Do not create destructive migrations.
-
-If adding new models such as classes/schedules, migrations must be additive and preserve existing tables/data.
-
-For membership plans, note that Gym Park has multiple access models:
-
-- unlimited/full access
-- morning time-restricted access
-- session-limited pack
-- short-duration pass.
-
-The existing MembershipPlan model may not model all of these elegantly.
-
-If plans are going to be persisted in the backend, extend the model cleanly rather than abusing DurationDays.
-
-A possible future-compatible model could include concepts such as:
-AccessMode
-SessionLimit
-AccessStartTime
-AccessEndTime
-ValidityDays
-
-Only make those schema additions if they are justified by the current implementation.
+Actual application accounts are created by ADMIN/EMPLOYEE.
 
 ==================================================
-20. CENTRALIZE BUSINESS DATA
+16. COURSES: CURRENT STATE
 ==================================================
 
-Do not scatter Gym Park facts across components.
+There is already a public Classes.tsx page.
 
-There must be a single clear source for:
-- brand name
-- logo references
-- phone
-- social links
-- address
-- map query
+It currently displays activities/classSessions from frontend configuration.
+
+Do NOT discard its good existing visual design.
+
+Transform it from static/demo scheduling into real backend-driven data.
+
+==================================================
+17. COURSE MANAGEMENT MODEL
+==================================================
+
+We need a real class scheduling/reservation system.
+
+Use a structure conceptually similar to:
+
+Course
+or ClassDefinition
+
+ClassSeries / CourseSchedule
+
+ClassSession
+
+ClassReservation
+
+The exact naming can follow the current domain style.
+
+==================================================
+18. COURSE DEFINITION
+==================================================
+
+A course/template should support:
+
+- Id
+- Name
+- Description
+- Category/type
+- Coach name optional
+- Default duration
+- Default capacity
+- ReservationRequired
+- WomenOnly
+- Active
+- PubliclyVisible
+- optional image
+- optional notes
+- CreatedByUserId
+- CreatedAt
+- UpdatedAt
+
+Examples:
+Spinning
+Body Combat
+Body Attack
+Pump
+Cross-boxing
+
+Do not hardcode those as enums if the gym should be able to create new course
+names later.
+
+==================================================
+19. COURSE RECURRENCE
+==================================================
+
+ADMIN and EMPLOYEE must be able to create:
+
+ONE-TIME CLASS
+DAILY RECURRING CLASS
+WEEKLY RECURRING CLASS
+
+For a recurring schedule support:
+
+- StartDate
+- optional EndDate
+- recurrence type
+- selected weekdays for weekly recurrence
+- start time
+- end time or duration
+- default capacity
+- active state.
+
+Example:
+
+Spinning
+Every Monday and Wednesday
+18:00 – 19:00
+Capacity 20
+From 2026-10-05
+Until 2026-12-31
+
+or:
+
+Body Combat
+Daily
+17:00 – 18:00
+Capacity 25
+
+or:
+
+Special Challenge
+One time
+2026-10-20
+19:00 – 20:30
+Capacity 30
+
+==================================================
+20. MATERIALIZED CLASS SESSIONS
+==================================================
+
+Each real occurrence should be represented by a ClassSession.
+
+A session should contain:
+
+- CourseId / SeriesId
+- StartsAt
+- EndsAt
+- Capacity
+- Status
+- Coach override optional
+- Notes override optional
+- CancelledAt optional
+
+Capacity should be overridable PER SESSION.
+
+Example:
+
+Normal weekly capacity:
+20
+
+But next Wednesday:
+capacity 15
+
+Staff should be able to modify only that occurrence without changing the whole
+series.
+
+==================================================
+21. RECURRENCE GENERATION
+==================================================
+
+Do NOT create an infinite number of database rows.
+
+Use a controlled generation horizon.
+
+For example:
+generate occurrences for the next 8–12 weeks.
+
+Use a deterministic/idempotent mechanism so regenerating doesn't create
+duplicates.
+
+When recurrence is updated:
+
+- update future sessions safely
+- do not silently delete a session that already contains reservations
+- warn or preserve booked occurrences where necessary.
+
+Document the chosen strategy.
+
+==================================================
+22. COURSE RESERVATIONS
+==================================================
+
+Create a reservation entity.
+
+Concept:
+
+ClassReservation
+- Id
+- ClassSessionId
+- MemberId
+- Status
+- CreatedAt
+- CancelledAt
+- CreatedByUserId optional
+- Notes optional
+
+Status examples:
+
+Booked
+Cancelled
+Attended
+NoShow
+Waitlisted
+
+At minimum implement:
+Booked
+Cancelled
+
+If implementing the waitlist is clean, implement it as well.
+
+==================================================
+23. CAPACITY ENFORCEMENT
+==================================================
+
+This must be safe server-side.
+
+Members cannot reserve more than the session capacity.
+
+Example:
+
+capacity = 20
+20 active reservations
+
+The 21st user must NOT be accepted as Booked.
+
+Use transaction/concurrency-safe logic.
+
+Do not:
+- calculate only in frontend
+- allow overbooking because of simultaneous requests.
+
+Add DB uniqueness protection to prevent the same member from booking the same
+session twice.
+
+Example unique constraint:
+ClassSessionId + MemberId
+where appropriate for the selected reservation lifecycle design.
+
+==================================================
+24. MEMBER BOOKING FLOW
+==================================================
+
+MEMBER sees:
+
+Cours
+
+inside member experience.
+
+They should see:
+
+- date
+- start/end time
+- course
+- coach
+- capacity
+- remaining places
+- reservation status
+- women-only indicator if applicable
+- cancelled/full state.
+
+Actions:
+
+RÉSERVER
+ANNULER MA RÉSERVATION
+
+After booking:
+show confirmation.
+
+Member also has:
+
+MES RÉSERVATIONS
+
+with:
+- upcoming
+- past
+- cancelled.
+
+==================================================
+25. STAFF COURSE MANAGEMENT
+==================================================
+
+ADMIN and EMPLOYEE have a real:
+
+Cours
+
+management page.
+
+Features:
+
+- calendar/week view
+- list view
+- create course
+- create recurring schedule
+- edit series
+- edit single occurrence
+- cancel occurrence
+- change capacity
+- change coach
+- deactivate series
+- view bookings
+- book member manually
+- cancel member booking
+- mark attendance/no-show if implemented.
+
+==================================================
+26. STAFF MANUAL BOOKING
+==================================================
+
+ADMIN and EMPLOYEE can reserve a class on behalf of a member.
+
+Flow:
+
+Open session
+→ Participants
+→ Ajouter un adhérent
+→ search by name/email/member number
+→ choose member
+→ confirm.
+
+Still respect capacity unless a deliberate authorized override feature is
+implemented.
+
+Do not silently exceed capacity.
+
+==================================================
+27. COURSE PARTICIPANTS
+==================================================
+
+For every session, staff should see:
+
+Spinning
+Monday 18:00
+Capacity: 20
+Reserved: 17
+Available: 3
+
+Participants:
+- member
+- email/member number
+- reservation status
+- booking time.
+
+Never expose this participant list publicly.
+
+==================================================
+28. PUBLIC CLASSES PAGE
+==================================================
+
+Connect existing public:
+
+/cours
+
+page to the backend.
+
+Public visitors can see:
+
+- public courses
+- current week
+- schedule
+- coach
+- time
+- remaining availability if desired
+- full/cancelled status.
+
+They must NOT see member information.
+
+For a logged-in MEMBER:
+
+course cards can show:
+"Réserver"
+
+For non-logged-in visitors:
+"Se connecter pour réserver"
+
+==================================================
+29. COURSE SERIES EDITING UX
+==================================================
+
+When editing a recurring course, support clear choice:
+
+Modifier:
+- cette séance uniquement
+- cette séance et les suivantes
+- toute la série
+
+Implement safely based on the recurrence architecture.
+
+If implementing all three correctly is excessive for this phase, at minimum
+support:
+
+- single occurrence
+- future series
+
+and document the limitation.
+
+==================================================
+30. CANCELLATION
+==================================================
+
+Staff can cancel one class occurrence.
+
+Cancelled session:
+- remains in database
+- displays "ANNULÉ"
+- cannot accept new bookings.
+
+Existing reservations should remain historically linked.
+
+Prepare the architecture for future member notifications.
+
+Do not delete the session to represent cancellation.
+
+==================================================
+31. TIMEZONE
+==================================================
+
+Gym Park is in Tunisia.
+
+Use the Gym Park configured timezone consistently.
+
+Do not store ambiguous local DateTime values.
+
+Prefer:
+UTC persistence
++ Gym Park timezone conversion at boundaries.
+
+Be especially careful when generating recurring occurrences.
+
+==================================================
+32. MEMBER ELIGIBILITY
+==================================================
+
+Use existing subscription information if practical.
+
+A suspended/inactive account cannot book.
+
+If the project can reliably determine an active subscription, require an active
+membership for course booking.
+
+Do not invent payment logic that does not exist.
+
+If subscription enforcement cannot yet be reliably applied, clearly isolate the
+eligibility service so it can be activated later.
+
+==================================================
+33. AUTHORIZATION POLICIES
+==================================================
+
+Use explicit backend policies/helpers.
+
+Conceptually:
+
+RequireAdmin
+RequireStaff
+RequireMember
+
+RequireStaff means:
+ADMIN OR EMPLOYEE
+
+Employee-management endpoints:
+RequireAdmin
+
+Member-management endpoints:
+RequireStaff
+
+Course-management endpoints:
+RequireStaff
+
+Member booking endpoints:
+RequireMember
+
+Do not repeatedly implement string comparisons in controllers.
+
+==================================================
+34. API DESIGN
+==================================================
+
+Create coherent REST endpoints.
+
+Possible structure:
+
+POST /api/auth/login
+POST /api/auth/change-password
+POST /api/auth/logout
+GET  /api/auth/me
+
+GET  /api/members
+POST /api/members
+GET  /api/members/{id}
+PUT  /api/members/{id}
+POST /api/members/{id}/reset-password
+POST /api/members/{id}/deactivate
+POST /api/members/{id}/reactivate
+
+GET  /api/employees
+POST /api/employees
+GET  /api/employees/{id}
+PUT  /api/employees/{id}
+POST /api/employees/{id}/reset-password
+POST /api/employees/{id}/deactivate
+POST /api/employees/{id}/reactivate
+
+GET  /api/courses
+POST /api/courses
+PUT  /api/courses/{id}
+
+GET  /api/class-sessions
+GET  /api/class-sessions/{id}
+PUT  /api/class-sessions/{id}
+POST /api/class-sessions/{id}/cancel
+
+GET  /api/class-sessions/{id}/reservations
+POST /api/class-sessions/{id}/reservations
+DELETE or POST cancellation endpoint
+
+GET /api/me/class-reservations
+POST /api/me/class-reservations/{sessionId}
+DELETE /api/me/class-reservations/{sessionId}
+
+Exact REST shape can be improved if there is a cleaner design.
+
+==================================================
+35. DATABASE CONSTRAINTS
+==================================================
+
+Add appropriate indexes/constraints.
+
+Examples:
+
+unique normalized email
+
+unique member number
+
+unique auth/profile relationship
+
+index sessions by StartsAt
+
+index reservation by SessionId
+
+index reservation by MemberId
+
+prevent duplicate active booking
+
+Use foreign keys deliberately.
+
+Define deletion behavior explicitly.
+
+Do not cascade-delete historical reservations when a member or course is
+deactivated.
+
+==================================================
+36. AUDIT FIELDS
+==================================================
+
+For staff-created operational data, preserve useful audit data.
+
+For example:
+
+CreatedByUserId
+UpdatedByUserId
+CreatedAt
+UpdatedAt
+
+Especially for:
+- accounts
+- courses
+- sessions
+- reservations made by staff.
+
+Do not build an enormous audit system if unnecessary, but preserve who created
+important records.
+
+==================================================
+37. FRONTEND SECURITY
+==================================================
+
+Create route guards.
+
+Public routes:
+accessible to everyone.
+
+Member routes:
+MEMBER only.
+
+Admin console:
+ADMIN / EMPLOYEE.
+
+Employee-management pages:
+ADMIN only.
+
+If an authenticated MEMBER manually navigates to admin-console:
+deny access.
+
+If EMPLOYEE manually navigates to employee management:
+deny access.
+
+Display a proper forbidden state or redirect.
+
+==================================================
+38. API CLIENT
+==================================================
+
+There is already:
+
+frontend/packages/api-client
+
+Use/refactor it rather than scattering fetch() calls everywhere.
+
+Centralize:
+- API base URL
+- auth requests
+- members
+- employees
+- courses
+- sessions
+- reservations.
+
+Use typed TypeScript DTOs.
+
+==================================================
+39. LOADING / ERROR STATES
+==================================================
+
+Every real management page must handle:
+
+loading
+empty
+success
+validation error
+403
+404
+network failure
+server failure.
+
+Do not leave blank screens.
+
+Use the existing Gym Park branding.
+
+==================================================
+40. CONFIRMATION UX
+==================================================
+
+Destructive actions should confirm:
+
+Deactivate member?
+Deactivate employee?
+Cancel class?
+Cancel reservation?
+
+Do not use browser alert() if a proper branded modal can reasonably be used.
+
+==================================================
+41. DO NOT BREAK EXISTING GYM PARK WORK
+==================================================
+
+Keep the already approved:
+
+- Gym Park branding
+- homepage
+- pricing
+- classes visual direction
 - opening hours
-- plans
-- registration fee
-- promotions
-- classes if frontend-configured.
+- contact info
+- logo
+- hero background
+- member UI styling.
 
-Existing files such as gymInfo.ts / plans.ts may be refactored.
+This task is FUNCTIONAL integration.
 
-Use typed data structures.
-
-==================================================
-21. SEO / METADATA
-==================================================
-
-Replace all Meliora metadata.
-
-Suggested title:
-Gym Park | Salle de sport à Ezzahra
-
-Suggested description:
-Gym Park à Ezzahra — musculation, cardio, cours collectifs, coaching et abonnements adaptés à votre rythme.
-
-Update:
-- page title
-- meta description
-- favicon
-- OpenGraph metadata where applicable
-- logo references
-- accessible labels.
-
-Set the public site's primary language to French.
+Do not redesign everything again.
 
 ==================================================
-22. RESPONSIVE DESIGN
+42. REMOVE DEMO AUTH AS AUTHORITATIVE STATE
 ==================================================
 
-This must look excellent on:
-- 1440px desktop
-- normal laptop
-- tablet
-- iPhone/mobile.
+Search for demo login/session behavior such as:
 
-On mobile:
-- keep the athlete/background composition usable
-- ensure the hero text does not cover the most important subject area
-- make CTA hierarchy obvious
-- make pricing horizontally/vertically easy to scan
-- avoid microscopic class schedule tables
-- ensure touch targets are appropriate.
+gym_park_demo_session
 
-==================================================
-23. ACCESSIBILITY & QUALITY
-==================================================
+and demo member authentication.
 
-Maintain:
-- keyboard navigation
-- visible focus states
-- semantic HTML
-- proper headings
-- sufficient color contrast
-- prefers-reduced-motion
-- meaningful alt text
-- proper button/link semantics.
+After this implementation:
 
-Do not sacrifice accessibility for the dark neon aesthetic.
+real protected application state must come from backend authentication.
+
+Demo content may remain only when clearly isolated and labelled as demo, but
+must not control real authorization.
 
 ==================================================
-24. ANIMATIONS
+43. MIGRATIONS
 ==================================================
 
-Use subtle high-quality interactions:
-- hero entrance
-- navigation transitions
-- card hover
-- scroll reveals
-- green underline/accent animation
-- smooth responsive menu.
+Create proper EF Core migrations.
 
-Avoid:
-- excessive floating
-- cheesy gym animations
-- excessive parallax
-- constant motion
-- animations that delay usability.
+Do NOT edit the existing initial migration destructively.
 
-==================================================
-25. IMPLEMENTATION APPROACH
-==================================================
+Add new migrations for:
+- authentication/user accounts
+- required account state
+- courses/series
+- sessions
+- reservations
+- related constraints/indexes.
 
-Do not only write a plan.
-
-Inspect the repository first and then IMPLEMENT the redesign.
-
-Before editing:
-1. understand the current routing and workspace architecture
-2. identify reusable functionality
-3. identify all old-client content
-4. identify assets that must no longer be referenced.
-
-Then implement systematically.
-
-Do not rewrite working technical logic merely for aesthetics.
-
-Do not remove existing member/backend functionality unless obsolete or genuinely incorrect.
+Migration must work on an existing database created from the current project.
 
 ==================================================
-26. VERIFICATION
+44. SEEDING
 ==================================================
 
-After implementation:
+Only seed what is required.
 
-Run the relevant frontend builds.
+Required:
+ONE bootstrap ADMIN.
 
-At minimum verify the public-site build.
+Do NOT generate fake employees.
 
-Also build member/admin workspaces if modified.
+Do NOT generate fake members into production seed data.
 
-Run the .NET backend build if backend code was touched.
+If you need sample courses for development/testing, keep them Development-only
+and clearly identify that behavior.
 
-Fix:
+==================================================
+45. TESTS — PERMISSIONS
+==================================================
+
+Add meaningful backend tests.
+
+At minimum verify:
+
+ADMIN:
+can create employee
+can manage member
+can create course
+
+EMPLOYEE:
+cannot create employee → 403
+cannot reset employee password → 403
+can create member
+can create course
+
+MEMBER:
+cannot create member → 403
+cannot create employee → 403
+cannot create course → 403
+can book class
+can cancel own booking
+
+Unauthenticated:
+protected endpoints → 401
+
+==================================================
+46. TESTS — PASSWORD FLOW
+==================================================
+
+Test:
+
+new account
+→ MustChangePassword true
+
+login with temp password
+→ authentication works but restricted
+
+attempt protected operation before changing password
+→ denied
+
+change password
+→ MustChangePassword false
+
+old temporary password
+→ no longer works
+
+new password
+→ works
+
+reset password
+→ old sessions invalidated if implemented
+→ MustChangePassword true again.
+
+==================================================
+47. TESTS — COURSE CAPACITY
+==================================================
+
+Test:
+
+session capacity 2
+
+member A books
+member B books
+
+member C attempts booking
+→ must fail / waitlist depending chosen design
+
+Also test:
+same member cannot create duplicate reservation.
+
+Also test concurrent booking behavior where practical.
+
+==================================================
+48. FRONTEND TESTS
+==================================================
+
+Update/add frontend tests covering:
+
+- login
+- forced password change
+- role redirect
+- admin sees Employees
+- employee does not see Employees
+- admin/employee member creation
+- temporary password modal
+- class creation
+- class booking
+- full class
+- reservation cancellation.
+
+==================================================
+49. BUILD VERIFICATION
+==================================================
+
+Run:
+
+dotnet build
+
+relevant dotnet tests
+
+frontend install/build
+
+public-site build
+
+admin-console build
+
+member portal build if modified
+
+Playwright/tests where available.
+
+Fix all:
 - TypeScript errors
-- broken imports
-- old asset references
-- route errors
-- responsive overflow
-- console errors.
-
-Perform a final global search for:
-Meliora
-Khzema
-Sousse
-old phone numbers
-old logo filenames
-FitPoints
-old prices
-and remove remaining former-client contamination.
+- compilation errors
+- migration errors
+- lint issues caused by your changes
+- broken routes
+- CORS/auth problems.
 
 ==================================================
-27. FINAL REPORT
+50. IMPORTANT SECURITY RULES
 ==================================================
 
-When finished, report:
+Never:
+- put passwords in Git
+- log normal user passwords
+- expose PasswordHash in DTOs
+- return hashes to frontend
+- trust role from frontend
+- trust memberId supplied by member for "my" actions
+- use localStorage role as authorization
+- authorize only through hidden buttons.
 
-1. What you changed
-2. Main files changed
-3. New assets used
-4. Routes redesigned/added
-5. Business data replaced
-6. Old-client data removed
-7. Backend/schema changes, if any
-8. Remaining mocked features
-9. Anything requiring Gym Park confirmation
-10. Build/test results
+The backend authenticated identity is authoritative.
 
-Do not tell me only what should be done.
-Implement it.
+==================================================
+51. FINAL MANUAL ACCEPTANCE FLOW
+==================================================
+
+At completion I must be able to perform this exact scenario:
+
+1. Start backend/database.
+2. Obtain the ONE bootstrap admin account.
+3. Login as ADMIN.
+4. If temporary, change admin password.
+5. Enter admin console.
+6. Open "Adhérents".
+7. Create:
+   member@example.com
+8. Receive a generated temporary password.
+9. Copy the password.
+10. Logout.
+11. Login as member@example.com using temporary password.
+12. Be forced to change password.
+13. Change password.
+14. Enter member area.
+15. Logout.
+16. Login as ADMIN.
+17. Create:
+    employee@example.com
+    type EMPLOYEE.
+18. Receive temporary password.
+19. Login as employee.
+20. Force password change.
+21. Employee enters admin console.
+22. Employee can manage members.
+23. Employee can create a recurring course.
+24. Employee CANNOT see/manage employee accounts.
+25. Create a weekly Spinning course:
+    Monday and Wednesday
+    18:00
+    capacity 20.
+26. Verify sessions appear publicly/member side.
+27. Login as member.
+28. Reserve one occurrence.
+29. Verify remaining capacity decreases.
+30. Verify staff sees member in participant list.
+31. Member cancels reservation.
+32. Verify capacity becomes available again.
+
+This exact scenario should work using real backend persistence.
+
+==================================================
+52. FINAL REPORT
+==================================================
+
+When finished, do not only say "implemented".
+
+Give me:
+
+1. Architecture used for authentication
+2. Role/permission model
+3. Database entities added/changed
+4. Migration names
+5. Authentication endpoints
+6. Member-management endpoints
+7. Employee-management endpoints
+8. Course/reservation endpoints
+9. Frontend routes/pages added
+10. How the bootstrap ADMIN is created
+11. EXACT instructions to retrieve/use the initial admin credentials
+12. How temporary passwords work
+13. How forced password change is enforced
+14. How course recurrence works
+15. How session capacity is protected
+16. Tests run/results
+17. Builds run/results
+18. Remaining limitations or mocked functionality
+19. Files changed
+
+IMPORTANT:
+Implement the functionality.
+Do not stop after writing an architecture proposal.
+Do not replace the working Gym Park branding.
+Do not commit or push unless I explicitly ask you to.

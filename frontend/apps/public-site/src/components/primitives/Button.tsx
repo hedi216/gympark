@@ -13,6 +13,7 @@ interface ButtonProps {
   onClick?: () => void;
   type?: "button" | "submit";
   className?: string;
+  disabled?: boolean;
 }
 
 export function Button({
@@ -22,6 +23,7 @@ export function Button({
   variant = "primary",
   onClick,
   type = "button",
+  disabled = false,
   className: extraClassName,
 }: ButtonProps) {
   const className = `${styles.btn} ${styles[variant]} ${extraClassName ?? ""}`;
@@ -59,7 +61,7 @@ export function Button({
   }
 
   return (
-    <button type={type} className={className} onClick={onClick}>
+    <button disabled={disabled} type={type} className={className} onClick={onClick}>
       {content}
     </button>
   );

@@ -127,6 +127,39 @@ namespace GymPlatform.Infrastructure.Migrations
                     b.ToTable("Announcements");
                 });
 
+            modelBuilder.Entity("GymPlatform.Domain.Entities.AuthSession", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("RevokedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserAccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExpiresAt");
+
+                    b.HasIndex("UserAccountId");
+
+                    b.ToTable("AuthSessions");
+                });
+
             modelBuilder.Entity("GymPlatform.Domain.Entities.Challenge", b =>
                 {
                     b.Property<Guid>("Id")
@@ -240,6 +273,256 @@ namespace GymPlatform.Infrastructure.Migrations
                     b.HasIndex("MemberId");
 
                     b.ToTable("CheckIns");
+                });
+
+            modelBuilder.Entity("GymPlatform.Domain.Entities.ClassReservation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CancelledAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ClassSessionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("UpdatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.HasIndex("MemberId");
+
+                    b.HasIndex("UpdatedByUserId");
+
+                    b.HasIndex("ClassSessionId", "MemberId")
+                        .IsUnique();
+
+                    b.ToTable("ClassReservations");
+                });
+
+            modelBuilder.Entity("GymPlatform.Domain.Entities.ClassSeries", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<DateOnly>("AppliesFrom")
+                        .HasColumnType("date");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("DurationMinutes")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly?>("EndDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Recurrence")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("StartDate")
+                        .HasColumnType("date");
+
+                    b.Property<TimeOnly>("StartTime")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("UpdatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Weekdays")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.HasIndex("UpdatedByUserId");
+
+                    b.ToTable("ClassSeries");
+                });
+
+            modelBuilder.Entity("GymPlatform.Domain.Entities.ClassSession", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("BookedCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CancelledAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CoachOverride")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndsAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsOverride")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NotesOverride")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("OccurrenceDate")
+                        .HasColumnType("date");
+
+                    b.Property<Guid>("SeriesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("StartsAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("UpdatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.HasIndex("StartsAt");
+
+                    b.HasIndex("UpdatedByUserId");
+
+                    b.HasIndex("SeriesId", "OccurrenceDate")
+                        .IsUnique();
+
+                    b.ToTable("ClassSessions", t =>
+                        {
+                            t.HasCheckConstraint("CK_ClassSession_Capacity", "\"Capacity\" > 0 AND \"BookedCount\" >= 0 AND \"BookedCount\" <= \"Capacity\"");
+                        });
+                });
+
+            modelBuilder.Entity("GymPlatform.Domain.Entities.Course", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CoachName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("DefaultCapacity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DefaultDurationMinutes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PubliclyVisible")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ReservationRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("UpdatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("WomenOnly")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.HasIndex("UpdatedByUserId");
+
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("GymPlatform.Domain.Entities.GymSettings", b =>
@@ -441,6 +724,16 @@ namespace GymPlatform.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<TimeOnly?>("AccessEndTime")
+                        .HasColumnType("time");
+
+                    b.Property<string>("AccessMode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeOnly?>("AccessStartTime")
+                        .HasColumnType("time");
+
                     b.Property<DateTime?>("AvailableFrom")
                         .HasColumnType("datetime2");
 
@@ -454,6 +747,9 @@ namespace GymPlatform.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CatalogCode")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -466,6 +762,9 @@ namespace GymPlatform.Infrastructure.Migrations
                         .HasColumnType("decimal(10,3)");
 
                     b.Property<int>("DurationDays")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DurationMonths")
                         .HasColumnType("int");
 
                     b.Property<int>("GuestPasses")
@@ -488,6 +787,9 @@ namespace GymPlatform.Infrastructure.Migrations
                     b.Property<bool>("Recommended")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("SessionLimit")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -495,6 +797,10 @@ namespace GymPlatform.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CatalogCode")
+                        .IsUnique()
+                        .HasFilter("\"CatalogCode\" IS NOT NULL");
 
                     b.ToTable("MembershipPlans");
                 });
@@ -1078,6 +1384,105 @@ namespace GymPlatform.Infrastructure.Migrations
                     b.ToTable("SupportTickets");
                 });
 
+            modelBuilder.Entity("GymPlatform.Domain.Entities.UserAccount", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(254)
+                        .HasColumnType("nvarchar(254)");
+
+                    b.Property<int>("FailedLoginAttempts")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastLoginAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LockedUntil")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("MemberId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("MustChangePassword")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NormalizedEmail")
+                        .IsRequired()
+                        .HasMaxLength(254)
+                        .HasColumnType("nvarchar(254)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+
+                    b.Property<int>("SessionVersion")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("StaffUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("UpdatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.HasIndex("MemberId")
+                        .IsUnique()
+                        .HasFilter("\"MemberId\" IS NOT NULL");
+
+                    b.HasIndex("NormalizedEmail")
+                        .IsUnique();
+
+                    b.HasIndex("Role")
+                        .IsUnique()
+                        .HasFilter("\"Role\" = 'ADMIN'");
+
+                    b.HasIndex("StaffUserId")
+                        .IsUnique()
+                        .HasFilter("\"StaffUserId\" IS NOT NULL");
+
+                    b.HasIndex("UpdatedByUserId");
+
+                    b.ToTable("UserAccounts", t =>
+                        {
+                            t.HasCheckConstraint("CK_UserAccounts_RoleProfile", "(\"Role\" = 'MEMBER' AND \"MemberId\" IS NOT NULL AND \"StaffUserId\" IS NULL) OR (\"Role\" IN ('ADMIN', 'EMPLOYEE') AND \"StaffUserId\" IS NOT NULL AND \"MemberId\" IS NULL)");
+                        });
+                });
+
+            modelBuilder.Entity("GymPlatform.Domain.Entities.AuthSession", b =>
+                {
+                    b.HasOne("GymPlatform.Domain.Entities.UserAccount", "UserAccount")
+                        .WithMany()
+                        .HasForeignKey("UserAccountId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("UserAccount");
+                });
+
             modelBuilder.Entity("GymPlatform.Domain.Entities.ChallengeProgress", b =>
                 {
                     b.HasOne("GymPlatform.Domain.Entities.Challenge", "Challenge")
@@ -1106,6 +1511,102 @@ namespace GymPlatform.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("GymPlatform.Domain.Entities.ClassReservation", b =>
+                {
+                    b.HasOne("GymPlatform.Domain.Entities.ClassSession", "ClassSession")
+                        .WithMany()
+                        .HasForeignKey("ClassSessionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GymPlatform.Domain.Entities.UserAccount", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GymPlatform.Domain.Entities.Member", "Member")
+                        .WithMany()
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GymPlatform.Domain.Entities.UserAccount", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("ClassSession");
+
+                    b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("GymPlatform.Domain.Entities.ClassSeries", b =>
+                {
+                    b.HasOne("GymPlatform.Domain.Entities.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GymPlatform.Domain.Entities.UserAccount", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GymPlatform.Domain.Entities.UserAccount", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("GymPlatform.Domain.Entities.ClassSession", b =>
+                {
+                    b.HasOne("GymPlatform.Domain.Entities.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GymPlatform.Domain.Entities.UserAccount", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GymPlatform.Domain.Entities.ClassSeries", "Series")
+                        .WithMany()
+                        .HasForeignKey("SeriesId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GymPlatform.Domain.Entities.UserAccount", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Series");
+                });
+
+            modelBuilder.Entity("GymPlatform.Domain.Entities.Course", b =>
+                {
+                    b.HasOne("GymPlatform.Domain.Entities.UserAccount", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GymPlatform.Domain.Entities.UserAccount", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("GymPlatform.Domain.Entities.LoyaltyAccount", b =>
@@ -1263,6 +1764,33 @@ namespace GymPlatform.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("GymPlatform.Domain.Entities.UserAccount", b =>
+                {
+                    b.HasOne("GymPlatform.Domain.Entities.UserAccount", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("GymPlatform.Domain.Entities.Member", "Member")
+                        .WithOne()
+                        .HasForeignKey("GymPlatform.Domain.Entities.UserAccount", "MemberId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("GymPlatform.Domain.Entities.StaffUser", "StaffUser")
+                        .WithOne()
+                        .HasForeignKey("GymPlatform.Domain.Entities.UserAccount", "StaffUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("GymPlatform.Domain.Entities.UserAccount", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Member");
+
+                    b.Navigation("StaffUser");
                 });
 
             modelBuilder.Entity("GymPlatform.Domain.Entities.Challenge", b =>

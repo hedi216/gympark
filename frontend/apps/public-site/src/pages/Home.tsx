@@ -126,25 +126,25 @@ export function Home() {
       </section>
       <section className="section member-preview">
         <div>
-          <p className="eyebrow">04 / Votre espace, en préparation</p>
+          <p className="eyebrow">04 / Votre espace membre</p>
           <h2>
             LE CLUB.
             <br />
             DANS VOTRE POCHE.
           </h2>
           <p>
-            Découvrez l’aperçu de votre futur espace : abonnement, carte membre,
-            assiduité, paiements et points fidélité.
+            Retrouvez votre abonnement, vos passages au club et vos paiements.
+            Consultez les cours et réservez votre prochaine séance.
           </p>
-          <span className="demo-label">Démonstration · données fictives</span>
+          <span className="demo-label">Accès remis par l’accueil</span>
           <Link className="gp-button outline" to="/espace-membre">
-            Explorer l’aperçu ↗
+            Ouvrir mon espace ↗
           </Link>
         </div>
         <div className="digital-preview">
           <div>
             <img src={gym.logo} alt="Gym Park" width="70" height="70" />
-            <span>ESPACE MEMBRE / DÉMO</span>
+            <span>ESPACE MEMBRE</span>
           </div>
           <p>
             VOTRE PROGRESSION.
@@ -155,7 +155,7 @@ export function Home() {
             <span>Abonnement ↗</span>
             <span>Carte membre ↗</span>
             <span>Assiduité ↗</span>
-            <span>Points fidélité ↗</span>
+            <span>Réservations ↗</span>
           </div>
         </div>
       </section>

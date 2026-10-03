@@ -42,7 +42,7 @@ export default function App() {
           <span>
             {config.city} / {config.name}
           </span>
-          <span>Portail membre · aperçu</span>
+          <span>Portail membre</span>
         </header>
         <div className="content">
           <p className="eyebrow">{section}</p>
@@ -52,11 +52,9 @@ export default function App() {
             dans l’espace Gym Park.
           </p>
           <div className="notice">
-            <strong>Votre espace actuel est disponible en aperçu</strong>
+            <strong>Votre espace adhérent est disponible</strong>
             <p>
-              Les fonctionnalités membre sont réunies sur le site principal. Ce
-              portail prépare leur future séparation, sans dupliquer vos
-              parcours.
+              Connectez-vous sur le site principal avec les accès remis par l’accueil. Ce portail conserve le point d’entrée vers votre espace.
             </p>
           </div>
           <div className="grid">
@@ -70,8 +68,7 @@ export default function App() {
               <small>02 / {section.toUpperCase()}</small>
               <h2>Tout au même endroit.</h2>
               <p>
-                Découvrez le tableau de bord, les paiements, les défis et les
-                notifications. Les données affichées sont fictives.
+                Retrouvez votre abonnement, vos cours, vos réservations et votre profil personnel.
               </p>
               <a className="cta" href={`${publicSite}/espace-membre`}>
                 Ouvrir l’espace membre ↗

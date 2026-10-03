@@ -1,60 +1,68 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ADMIN_URL, errorMessage, useAuth } from "@gym-platform/api-client";
 import { AuthLayout } from "../components/auth/AuthLayout";
 import { TextField } from "../components/primitives/TextField";
-import { Checkbox } from "../components/primitives/Checkbox";
 import { Button } from "../components/primitives/Button";
-import { useAuth } from "../lib/AuthContext";
 import styles from "../components/auth/AuthLayout.module.css";
-
 export function Login() {
+  const { user, login } = useAuth();
   const navigate = useNavigate();
-  const { login } = useAuth();
-  const [identifier, setIdentifier] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    if (!identifier || !password) {
-      setError("Renseignez votre email (ou téléphone) et votre mot de passe.");
-      return;
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  useEffect(() => {
+    if (user) {
+      if (user.mustChangePassword)
+        navigate("/changer-mot-de-passe", { replace: true });
+      else if (user.role === "MEMBER")
+        navigate("/espace-membre", { replace: true });
+      else window.location.assign(ADMIN_URL);
     }
-    setError(null);
-    login();
-    navigate("/espace-membre");
+  }, [user, navigate]);
+  async function submit(e: FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setError("");
+    try {
+      await login(email, password);
+      setPassword("");
+    } catch (e) {
+      setError(errorMessage(e));
+    } finally {
+      setBusy(false);
+    }
   }
-
   return (
     <AuthLayout
       title="Connexion"
-      subtitle="Accédez à votre abonnement, votre carte membre et vos points fidélité."
-      onSubmit={handleSubmit}
+      subtitle="Retrouvez votre espace Gym Park avec les accès remis par l’accueil."
+      onSubmit={submit}
       footer={
         <>
           {error && (
-            <div className={styles.note} role="alert">
+            <div className="api-error" role="alert">
               {error}
             </div>
           )}
-
-          <Button type="submit" variant="primary" className={styles.submit}>
-            Ouvrir la démonstration
+          <Button type="submit" disabled={busy} className={styles.submit}>
+            {busy ? "Connexion…" : "Se connecter"}
           </Button>
-
           <p className={styles.switch}>
-            Pas encore membre ? <Link to="/rejoindre">Créer un compte</Link>
+            Pas encore d’accès ?{" "}
+            <Link to="/rejoindre">Inscription au club</Link>
           </p>
+          <Link to="/mot-de-passe-oublie">Mot de passe oublié ?</Link>
         </>
       }
     >
       <TextField
-        label="Email ou téléphone"
-        type="text"
-        value={identifier}
-        onChange={setIdentifier}
+        label="Email"
+        type="email"
+        value={email}
+        onChange={setEmail}
         autoComplete="username"
         required
       />
@@ -66,15 +74,6 @@ export function Login() {
         autoComplete="current-password"
         required
       />
-
-      <div className={styles.inline}>
-        <Checkbox checked={remember} onChange={setRemember}>
-          Se souvenir de moi
-        </Checkbox>
-        <Link to="/mot-de-passe-oublie" className={styles.forgot}>
-          Mot de passe oublié ?
-        </Link>
-      </div>
     </AuthLayout>
   );
 }

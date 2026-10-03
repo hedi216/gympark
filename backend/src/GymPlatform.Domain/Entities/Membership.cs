@@ -7,6 +7,7 @@ public class Member : BaseEntity
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string Phone { get; set; } = string.Empty;
+    // Legacy column retained for data safety. Authentication uses UserAccount only.
     public string PasswordHash { get; set; } = string.Empty;
     public DateOnly? DateOfBirth { get; set; }
     public string? PhotoUrl { get; set; }
@@ -25,6 +26,13 @@ public class Member : BaseEntity
 
 public class MembershipPlan : BaseEntity
 {
+    public string? CatalogCode { get; set; }
+    public string AccessMode { get; set; } = "full";
+    public int? DurationMonths { get; set; }
+    public int? SessionLimit { get; set; }
+    public TimeOnly? AccessStartTime { get; set; }
+    public TimeOnly? AccessEndTime { get; set; }
+
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public int DurationDays { get; set; }

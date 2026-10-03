@@ -1579,3 +1579,5 @@ address {
 img[src$="gym-park-logo-dark.png"] {
   object-fit: contain;
 }
+
+.course-image { width: 100%; height: 180px; object-fit: cover; } .schedule-days .session { min-width: 0; }

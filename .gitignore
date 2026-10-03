@@ -25,3 +25,13 @@ Thumbs.db
 **/test-results/
 **/playwright-report/
 **/artifacts/
+
+# Local databases, bootstrap output and development credentials
+*.db
+*.db-*
+*.sqlite*
+*.log
+.env.*
+!.env.example
+
+.gympark/

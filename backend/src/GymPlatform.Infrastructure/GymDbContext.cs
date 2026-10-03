@@ -5,7 +5,7 @@ namespace GymPlatform.Infrastructure;
 
 public class GymDbContext : DbContext
 {
-    public GymDbContext(DbContextOptions<GymDbContext> options) : base(options)
+    public GymDbContext(DbContextOptions options) : base(options)
     {
     }
 
@@ -34,6 +34,13 @@ public class GymDbContext : DbContext
     public DbSet<GymSettings> GymSettings => Set<GymSettings>();
     public DbSet<OpeningHours> OpeningHours => Set<OpeningHours>();
     public DbSet<SpecialDate> SpecialDates => Set<SpecialDate>();
+
+    public DbSet<UserAccount> UserAccounts => Set<UserAccount>();
+    public DbSet<AuthSession> AuthSessions => Set<AuthSession>();
+    public DbSet<Course> Courses => Set<Course>();
+    public DbSet<ClassSeries> ClassSeries => Set<ClassSeries>();
+    public DbSet<ClassSession> ClassSessions => Set<ClassSession>();
+    public DbSet<ClassReservation> ClassReservations => Set<ClassReservation>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -77,5 +84,41 @@ public class GymDbContext : DbContext
         modelBuilder.Entity<Promotion>()
             .Property(p => p.Value)
             .HasPrecision(10, 3);
+
+        modelBuilder.Entity<MembershipPlan>().HasIndex(p => p.CatalogCode).IsUnique().HasFilter("\"CatalogCode\" IS NOT NULL");
+        var account = modelBuilder.Entity<UserAccount>();
+        account.Property(a => a.Email).HasMaxLength(254);
+        account.Property(a => a.NormalizedEmail).HasMaxLength(254);
+        account.Property(a => a.Role).HasMaxLength(16);
+        account.HasIndex(a => a.NormalizedEmail).IsUnique();
+        account.HasIndex(a => a.Role).IsUnique().HasFilter("\"Role\" = 'ADMIN'");
+        account.HasIndex(a => a.MemberId).IsUnique().HasFilter("\"MemberId\" IS NOT NULL");
+        account.HasIndex(a => a.StaffUserId).IsUnique().HasFilter("\"StaffUserId\" IS NOT NULL");
+        account.HasOne(a => a.Member).WithOne().HasForeignKey<UserAccount>(a => a.MemberId).OnDelete(DeleteBehavior.Restrict);
+        account.HasOne(a => a.StaffUser).WithOne().HasForeignKey<UserAccount>(a => a.StaffUserId).OnDelete(DeleteBehavior.Restrict);
+        account.ToTable(t => t.HasCheckConstraint("CK_UserAccounts_RoleProfile", "(\"Role\" = 'MEMBER' AND \"MemberId\" IS NOT NULL AND \"StaffUserId\" IS NULL) OR (\"Role\" IN ('ADMIN', 'EMPLOYEE') AND \"StaffUserId\" IS NOT NULL AND \"MemberId\" IS NULL)"));
+        modelBuilder.Entity<AuthSession>().HasOne(s => s.UserAccount).WithMany().HasForeignKey(s => s.UserAccountId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<AuthSession>().HasIndex(s => s.ExpiresAt);
+        modelBuilder.Entity<Course>().Property(c => c.Name).HasMaxLength(150);
+        modelBuilder.Entity<ClassSeries>().HasOne(s => s.Course).WithMany().HasForeignKey(s => s.CourseId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<ClassSession>().HasOne(s => s.Course).WithMany().HasForeignKey(s => s.CourseId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<ClassSession>().HasOne(s => s.Series).WithMany().HasForeignKey(s => s.SeriesId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<ClassSession>().HasIndex(s => new { s.SeriesId, s.OccurrenceDate }).IsUnique();
+        modelBuilder.Entity<ClassSession>().HasIndex(s => s.StartsAt);
+        modelBuilder.Entity<ClassSession>().ToTable(t => t.HasCheckConstraint("CK_ClassSession_Capacity", "\"Capacity\" > 0 AND \"BookedCount\" >= 0 AND \"BookedCount\" <= \"Capacity\""));
+        modelBuilder.Entity<ClassReservation>().HasIndex(r => new { r.ClassSessionId, r.MemberId }).IsUnique();
+        modelBuilder.Entity<ClassReservation>().HasIndex(r => r.MemberId);
+        modelBuilder.Entity<ClassReservation>().HasOne(r => r.ClassSession).WithMany().HasForeignKey(r => r.ClassSessionId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<ClassReservation>().HasOne(r => r.Member).WithMany().HasForeignKey(r => r.MemberId).OnDelete(DeleteBehavior.Restrict);
+        foreach (var type in new[] { typeof(UserAccount), typeof(Course), typeof(ClassSeries), typeof(ClassSession), typeof(ClassReservation) })
+        {
+            modelBuilder.Entity(type).HasOne(typeof(UserAccount), null).WithMany().HasForeignKey("CreatedByUserId").OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity(type).HasOne(typeof(UserAccount), null).WithMany().HasForeignKey("UpdatedByUserId").OnDelete(DeleteBehavior.Restrict);
+        }
+        // SQL Server and SQLite return DateTime with unspecified Kind; persisted instants are UTC.
+        foreach (var entity in modelBuilder.Model.GetEntityTypes())
+        foreach (var property in entity.GetProperties())
+            if (property.ClrType == typeof(DateTime))
+                property.SetValueConverter(new Microsoft.EntityFrameworkCore.Storage.ValueConversion.ValueConverter<DateTime, DateTime>(v => v, v => DateTime.SpecifyKind(v, DateTimeKind.Utc)));
     }
 }

@@ -16,3 +16,5 @@ createRoot(document.getElementById("root")!).render(
 );
 
 import "./styles/brand.css";
+
+import "@gym-platform/design-system/src/functional.css";

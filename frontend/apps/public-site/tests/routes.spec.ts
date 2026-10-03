@@ -54,7 +54,7 @@ for (const width of [1440, 1024, 768, 390, 320])
         );
       expect.soft(broken, `broken images on ${route}`).toEqual([]);
       if (route.startsWith("/espace-membre"))
-        await expect(page.locator(".demo-banner")).toBeVisible();
+        await expect(page).toHaveURL(/\/connexion$/);
     }
     expect(errors).toEqual([]);
   });

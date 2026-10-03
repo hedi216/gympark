@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { errorMessage, useAuth } from "@gym-platform/api-client";
 import { gym } from "../../lib/gymInfo";
 import type { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -8,6 +10,8 @@ const SIDEBAR_ITEMS = [
     group: "Compte",
     items: [
       { label: "Vue d'ensemble", to: "/espace-membre" },
+      { label: "Cours", to: "/espace-membre/cours" },
+      { label: "Mes réservations", to: "/espace-membre/reservations" },
       { label: "Mon abonnement", to: "/espace-membre/abonnement" },
       { label: "Carte membre", to: "/espace-membre/carte" },
       { label: "Assiduité", to: "/espace-membre/assiduite" },
@@ -53,6 +57,10 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { pathname } = useLocation();
+  const { logout } = useAuth();
+  const [error, setError] = useState("");
+  const demo = ["fidelite", "recompenses", "defis", "parrainage", "notifications", "support"].some(name => pathname.endsWith("/" + name));
+  const leave = () => { void logout().catch(e => setError(errorMessage(e))); };
 
   return (
     <div className={styles.shell}>
@@ -80,9 +88,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             ))}
           </nav>
 
-          <Link to="/" className={styles.logout}>
-            ← Quitter l'aperçu
-          </Link>
+          <button type="button" className="logout-button" onClick={leave}>Se déconnecter</button>
         </div>
       </aside>
 
@@ -91,16 +97,15 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <Link to="/" className={styles.mark}>
             <img src={gym.logo} alt="Gym Park" className={styles.markIcon} />
           </Link>
-          <Link to="/" className={styles.logout}>
-            Quitter
-          </Link>
+          <button type="button" className="logout-button" onClick={leave}>Déconnexion</button>
         </div>
 
-        <div className="demo-banner">
+        {error && <div className="api-error" role="alert">{error}</div>}
+        {demo && <div className="demo-banner">
           <strong>DÉMONSTRATION GYM PARK</strong> · Données fictives. Aucun
           paiement, accès QR ou avantage réel. Les actions restent locales ; les
           règles de fidélité, de pause et de parrainage sont à confirmer.
-        </div>
+        </div>}
         <details className="mobile-member-links">
           <summary>Toutes les rubriques membre</summary>
           <nav>

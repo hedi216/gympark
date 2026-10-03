@@ -22,10 +22,6 @@ export function AuthLayout({
       <div className={styles.panel}>
         <form className={styles.form} onSubmit={onSubmit}>
           <img className="auth-logo" src={gym.logo} alt="Gym Park" />
-          <div className="demo-banner">
-            Parcours de démonstration. Aucun compte réel n’est créé. N’utilisez
-            pas votre mot de passe habituel.
-          </div>
           <h1 className={styles.title}>{title}</h1>
           <p className={styles.subtitle}>{subtitle}</p>
 
